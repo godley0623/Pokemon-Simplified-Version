@@ -1,0 +1,43 @@
+.first-pokemon-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 72px;
+}
+.starter-pokemon-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+.starters {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+.starters .pokemon {
+    width: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 0px;
+}
+.starters .sprite-container {
+    height: 100px;
+    display: flex;
+    align-items: flex-end;
+}
+.starters .name-container {
+    height: 90px;
+    display: flex;
+    align-items: flex-end;
+}
+.starters h3 {
+    margin: 0;
+}
+
+.starters .pokemon img {
+    /*width: 80px;
+    height: 80px;*/
+    
+    transform: scale(1.8);
+}
