@@ -1,0 +1,12 @@
+.type-matchup-page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.type-selector {
+    width: 14rem;
+    height: 7rem;
+    background-color: rgba(50, 50, 50, .5);
+    border-radius: 1rem;
+}
