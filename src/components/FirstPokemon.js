@@ -4,7 +4,6 @@ import genOne from '../data/genone_pkmn.json'
 import genTwo from '../data/gentwo_pkmn.json'
 import genThree from '../data/genthree_pkmn.json'
 import genFour from '../data/genfour_pkmn.json'
-import '../styles/firstPokemon.css'
 
 export default function FirstPokemon() {
   return (

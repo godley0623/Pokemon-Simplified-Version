@@ -1,8 +1,3 @@
-body {
-    background-image: url('../assets/backgroundImages/starter-choice-bg.jpeg');
-    background-size: 100% 100%;
-}
-
 .first-pokemon-container {
     display: flex;
     flex-direction: column;

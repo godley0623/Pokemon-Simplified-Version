@@ -7,3 +7,10 @@ export function capFirstLetter(str) {
 
     return firstLetterCap + remainingLetters
 }
+
+export function setPageBackground(bg) {
+    const html = document.querySelector('html');
+    html.style.backgroundImage = `url(${bg})`;
+    html.style.backgroundSize = '100% 100%';
+    html.style.backgroundRepeat = 'no-repeat';
+}
