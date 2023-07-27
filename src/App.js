@@ -1,11 +1,15 @@
-import logo from './logo.svg';
+import { Routes, Route } from "react-router-dom";
 import './App.css';
-import FirstPokemon from './components/FirstPokemon';
+import HomePage from './pages/HomePage';
+import StarterChoicePage from './pages/StarterChoicePage';
 
 function App() {
   return (
     <div className="App">
-      <FirstPokemon />
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/starter-choice' element={<StarterChoicePage />} />
+      </Routes>
     </div>
   );
 }

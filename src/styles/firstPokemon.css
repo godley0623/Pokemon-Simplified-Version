@@ -1,7 +1,25 @@
+body {
+    background-image: url('../assets/backgroundImages/starter-choice-bg.jpeg');
+    background-size: 100% 100%;
+}
+
 .first-pokemon-container {
     display: flex;
     flex-direction: column;
+    margin-top: 50px;
     margin-bottom: 72px;
+
+    background-color: rgba(50, 50, 50, .5);
+
+    margin-left: 180px;
+    margin-right: 180px;
+
+    padding-bottom: 32px;
+
+    border-radius: 32px;
+}
+.first-pokemon-container h1, .first-pokemon-container h2 {
+    color: white;
 }
 .starter-pokemon-container {
     display: flex;
@@ -20,6 +38,17 @@
     align-items: center;
     justify-content: space-evenly;
     gap: 0px;
+
+    padding-bottom: 24px;
+
+    border-radius: 24px;
+
+    background-color: rgba(254, 254, 254, 0.5);
+
+    cursor: pointer;
+}
+.starters .pokemon:hover {
+    background-color: rgba(254, 254, 254, 1);
 }
 .starters .sprite-container {
     height: 100px;
