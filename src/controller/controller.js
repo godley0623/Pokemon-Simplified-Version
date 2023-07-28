@@ -8,6 +8,16 @@ export function capFirstLetter(str) {
     return firstLetterCap + remainingLetters
 }
 
+export function lowerFirstLetter(str) {
+    const firstLetter = str.charAt(0)
+
+    const firstLetterCap = firstLetter.toLowerCase()
+
+    const remainingLetters = str.slice(1)
+
+    return firstLetterCap + remainingLetters
+}
+
 export function setPageBackground(bg) {
     const html = document.querySelector('html');
     html.style.backgroundImage = `url(${bg})`;

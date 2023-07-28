@@ -1,12 +1,51 @@
 .type-matchup-page {
     height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 3rem;
 }
 
 .type-selector {
-    width: 14rem;
+    width: 27rem;
     height: 7rem;
-    background-color: rgba(50, 50, 50, .5);
+    background: rgba(0,0,0,.2);
     border-radius: 1rem;
+
+    margin-top: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 1.5rem;
+}
+.type-img-container {
+    display: flex;
+}
+
+.type-display-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 95vw;
+    height: 7rem;
+
+    background: rgba(0,0,0,.2);
+    border-radius: 1rem;
+}
+.type-display-container .types {
+    display: flex;
+
+}
+.type-display-container .label {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+}
+.type-display-container img {
+    width: 156px;
 }
