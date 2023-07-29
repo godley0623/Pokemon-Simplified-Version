@@ -10,7 +10,10 @@ export default function HomePage() {
     setPageBackground(bg);
     const navigate = useNavigate();
     function goToTypeMatchupPage() {
-        navigate('/type-matchup')
+        window.open("/type-matchup", "_blank");
+    }
+    function goToPlayPage() {
+        navigate('/play')
     }
   return (
     <div className='home-page'>
@@ -20,7 +23,7 @@ export default function HomePage() {
                 <LandingPageButton text='GitHub'/>
             </div>
             <div className='play'>
-                <LandingPageButton text='Play' />
+                <LandingPageButton text='Play' clickCB={goToPlayPage}/>
             </div>
         </div>
     </div>

@@ -5,6 +5,22 @@ import genFour from '../data/genfour_pkmn.json'
 
 export const allPkmn = { ...genOne, ...genTwo, ...genThree, ...genFour};
 
+export function getPkmnParty() {
+    return localStorage.getItem('PSV: pkmn-party');
+}
+
+export function addPkmnToParty(pkmn) {
+    let pkmnParty = JSON.parse(localStorage.getItem('PSV: pkmn-party'));
+
+    if (pkmnParty) {
+        pkmnParty.push(pkmn)
+    }else {
+        pkmnParty = [pkmn]
+    }
+
+    localStorage.setItem('PSV: pkmn-party', JSON.stringify(pkmnParty))
+}
+
 export function getAllPkmnByType(type) {
     if (type[0] === 'None') return [];
    
