@@ -47,5 +47,30 @@
     font-weight: bold;
 }
 .type-display-container img {
-    width: 156px;
+    width: 136px;
+}
+
+.tm-box-container {
+    display: flex;
+    flex-direction: column;
+
+    width: 95vw;
+    height: 60rem;
+
+    background: rgba(0,0,0,.2);
+    border-radius: 1rem;
+}
+.tm-box-container .pokemon-icon-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.tm-box-container img {
+    transform-origin: 0 0;
+    transform: scale(2);
+}
+.tm-box-container .label {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
 }
