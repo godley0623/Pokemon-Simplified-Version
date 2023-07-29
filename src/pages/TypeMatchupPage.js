@@ -8,7 +8,7 @@ import TypeDisplay from '../components/TypeDisplay'
 import TMPokemonBox from '../components/TMPokemonBox'
 
 export default function TypeMatchupPage() {
-    setPageBackground(bg);
+    setPageBackground(bg, '', 'rgb(233,242,235)');
     const types = ["None", "Fire", "Water", "Grass", "Electric", "Normal", "Flying", "Bug", "Poison", "Rock", "Ground", "Fighting", "Psychic", "Ghost", "Dark", "Steel", "Fairy", "Ice", "Dragon"];
 
     const [selectedType, setSelectedType] = useState(["None", "None"]);

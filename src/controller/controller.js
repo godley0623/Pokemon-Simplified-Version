@@ -18,9 +18,10 @@ export function lowerFirstLetter(str) {
     return firstLetterCap + remainingLetters
 }
 
-export function setPageBackground(bg) {
+export function setPageBackground(bg, bgSize='100% 100%', bgColor='white') {
     const html = document.querySelector('html');
+    html.style.backgroundColor = bgColor
     html.style.backgroundImage = `url(${bg})`;
-    html.style.backgroundSize = '100% 100%';
+    html.style.backgroundSize = bgSize;
     html.style.backgroundRepeat = 'no-repeat';
 }
