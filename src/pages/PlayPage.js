@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import bg from '../assets/backgroundImages/type-matchup-bg.jpeg'
 import { setPageBackground } from '../controller/controller'
 import { getPkmnParty } from '../controller/pkmnDataBaseController'
+import PokemonPartyFooter from '../components/PokemonPartyFooter'
 
 import '../styles/playPage.css'
 
@@ -20,6 +21,9 @@ export default function PlayPage() {
                 <p>You don't have any Pokemon</p>
                 <div className='button' onClick={goToStarterPage}>Get A Pokemon</div>
             </div>
+        }
+        {getPkmnParty() &&
+            <PokemonPartyFooter />
         }
     </div>
   )
