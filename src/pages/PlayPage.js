@@ -4,6 +4,7 @@ import bg from '../assets/backgroundImages/type-matchup-bg.jpeg'
 import { setPageBackground } from '../controller/controller'
 import { getPkmnParty } from '../controller/pkmnDataBaseController'
 import PokemonPartyFooter from '../components/PokemonPartyFooter'
+import BattleOptions from '../components/BattleOptions'
 
 import '../styles/playPage.css'
 
@@ -23,7 +24,14 @@ export default function PlayPage() {
             </div>
         }
         {getPkmnParty() &&
-            <PokemonPartyFooter />
+            <>
+                <div className='battle-options'>
+                    <BattleOptions title='Wild' name='wild-battle' options={['Plains']} />
+                    <BattleOptions title='Trainer' name='trainer-battle' options={['Easy', 'Normal', 'Hard']} />
+                    <BattleOptions title='Gym' name='gym-battle' options={['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Random']} />
+                </div>
+                <PokemonPartyFooter />
+            </>
         }
     </div>
   )
