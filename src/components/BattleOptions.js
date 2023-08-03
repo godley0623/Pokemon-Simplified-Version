@@ -11,7 +11,7 @@ export default function BattleOptions(props) {
             ))}
             </select>
         }
-        <div className='battle-button'>Battle</div>
+        <div className='battle-button' onClick={props.clickCB}>Battle</div>
     </div>
   )
 }

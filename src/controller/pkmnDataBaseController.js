@@ -67,7 +67,7 @@ export function setWildPkmn () {
     const randMid = mid[getRandomNumber(mid.length)];
     const randHigh = high[getRandomNumber(high.length)];
 
-    if (randNum <= 70) return randLow;
-    else if (randNum <= 95) return randMid;
+    if (randNum <= 80) return randLow;
+    else if (randNum <= 99) return randMid;
     else return randHigh;
 } 
