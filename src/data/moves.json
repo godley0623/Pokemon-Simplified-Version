@@ -1,0 +1,362 @@
+{
+    "Normal": {
+        "type": "normal",
+        "power": 70,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Fire": {
+        "type": "fire",
+        "power": 70,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Water": {
+        "type": "water",
+        "power": 70,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Electric": {
+        "type": "electric",
+        "power": 70,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Grass": {
+        "type": "grass",
+        "power": 70,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Flying": {
+        "type": "flying",
+        "power": 70,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Fighting": {
+        "type": "fighting",
+        "power": 70,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Poison": {
+        "type": "poison",
+        "power": 70,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Ground": {
+        "type": "ground",
+        "power": 70,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Rock": {
+        "type": "rock",
+        "power": 70,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Bug": {
+        "type": "bug",
+        "power": 70,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Ghost": {
+        "type": "ghost",
+        "power": 70,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Steel": {
+        "type": "steel",
+        "power": 70,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Psychic": {
+        "type": "psychic",
+        "power": 70,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Ice": {
+        "type": "ice",
+        "power": 70,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Dragon": {
+        "type": "dragon",
+        "power": 70,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Dark": {
+        "type": "dark",
+        "power": 70,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Fairy": {
+        "type": "fairy",
+        "power": 70,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Normal+": {
+        "type": "normal",
+        "power": 90,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Fire+": {
+        "type": "fire",
+        "power": 90,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Water+": {
+        "type": "water",
+        "power": 90,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Electric+": {
+        "type": "electric",
+        "power": 90,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Grass+": {
+        "type": "grass",
+        "power": 90,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Flying+": {
+        "type": "flying",
+        "power": 90,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Fighting+": {
+        "type": "fighting",
+        "power": 90,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Poison+": {
+        "type": "poison",
+        "power": 90,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Ground+": {
+        "type": "ground",
+        "power": 90,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Rock+": {
+        "type": "rock",
+        "power": 90,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Bug+": {
+        "type": "bug",
+        "power": 90,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Ghost+": {
+        "type": "ghost",
+        "power": 90,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Steel+": {
+        "type": "steel",
+        "power": 90,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Psychic+": {
+        "type": "psychic",
+        "power": 90,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Ice+": {
+        "type": "ice",
+        "power": 90,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Dragon+": {
+        "type": "dragon",
+        "power": 90,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Dark+": {
+        "type": "dark",
+        "power": 90,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Fairy+": {
+        "type": "fairy",
+        "power": 90,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    }
+}

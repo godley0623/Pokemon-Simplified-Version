@@ -25,3 +25,7 @@ export function setPageBackground(bg, bgSize='100% 100%', bgColor='white') {
     html.style.backgroundSize = bgSize;
     html.style.backgroundRepeat = 'no-repeat';
 }
+
+export function getRandomNumber(num) {
+    return Math.floor(Math.random() * num);
+}

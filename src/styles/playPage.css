@@ -52,10 +52,13 @@
 
     display: flex;
     align-items: center;
-    gap: 1.5rem;
 
     position: fixed;
     bottom: 0;
+}
+.pkmn-party-footer .pkmn-party {
+    display: flex;
+    gap: 1.5rem;
 }
 .pkmn-party-footer .icon-container {
     background-color: rgba(254, 254, 254, 0.5);

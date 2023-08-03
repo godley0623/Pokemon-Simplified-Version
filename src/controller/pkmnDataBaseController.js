@@ -2,8 +2,22 @@ import genOne from '../data/genone_pkmn.json'
 import genTwo from '../data/gentwo_pkmn.json'
 import genThree from '../data/genthree_pkmn.json'
 import genFour from '../data/genfour_pkmn.json'
+import { getRandomNumber } from './controller'
 
 export const allPkmn = { ...genOne, ...genTwo, ...genThree, ...genFour};
+
+let low = [];
+let mid = [];
+let high = [];
+Object.keys(allPkmn).forEach((key) => {
+    if (allPkmn[key]['atk'] <= 5) low.push(allPkmn[key]);
+    else if (allPkmn[key]['atk'] <= 9) mid.push(allPkmn[key]);
+    else high.push(allPkmn[key]);
+})
+
+export let lowPkmn = low;
+export let midPkmn = mid;
+export let highPkmn = high;
 
 export function getPkmnParty() {
     return localStorage.getItem('PSV: pkmn-party');
@@ -46,3 +60,14 @@ export function getAllPkmnByType(type) {
 
   return pkmnArray;
 }
+
+export function setWildPkmn () {
+    const randNum = getRandomNumber(100) + 1;
+    const randLow = low[getRandomNumber(low.length)];
+    const randMid = mid[getRandomNumber(mid.length)];
+    const randHigh = high[getRandomNumber(high.length)];
+
+    if (randNum <= 70) return randLow;
+    else if (randNum <= 95) return randMid;
+    else return randHigh;
+} 
