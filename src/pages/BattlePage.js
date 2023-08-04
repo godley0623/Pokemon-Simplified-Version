@@ -81,6 +81,7 @@ export default function BattlePage() {
                 ))
                 }
             </div>
+            <div className='battle-message-box'></div>
         </div>
     </div>
   )
