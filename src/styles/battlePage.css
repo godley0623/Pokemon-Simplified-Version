@@ -91,14 +91,26 @@
 .grass {
     background: linear-gradient(to bottom, rgb(98,188,90), rgb(48, 138, 40));
 }
+.grass:hover {
+    background: rgb(148,238,140);
+}
 .water {
     background: linear-gradient(to bottom, rgb(80,144,213), rgb(30, 94, 163));  
+}
+.water:hover {
+    background: rgb(130,194,263);
 }
 .fire {
     background: linear-gradient(to bottom, rgb(255,157,85), rgb(205, 107, 35));  
 }
+.fire:hover {
+    background: rgb(255,207,135);
+}
 .poison {
     background: linear-gradient(to bottom, rgb(170,108,200), rgb(120, 58, 150));  
+}
+.poison:hover {
+    background: rgb(220,158,250);
 }
 
 
@@ -139,6 +151,55 @@
     background: white;
 }
 
+.hp-bar {
+    position: absolute;
+    top: 37%;
+
+    width: 15rem;
+    height: 1.2rem;
+
+    border: 2px solid black;
+    border-radius: 1rem;
+
+    margin-left: .5rem;
+}
+.hp-bar .fill {
+    height: 100%;
+
+    border-radius: 1rem;
+
+    transition: all .5s ease;
+}
+.hp-percent {
+    position: absolute;
+    left: 40%;
+    top: -80%;
+}
+.your-hp-container h3 {
+    position: absolute;
+    top: 31%;
+
+    margin-left: 0.5%;
+}
+
+.opp-hp-container .hp-bar {
+    position: absolute;
+    top: 10%;
+    right: 13%;
+
+    width: 15rem;
+    height: 1.2rem;
+
+    border: 2px solid black;
+    border-radius: 1rem;
+}
+.opp-hp-container h3 {
+    position: absolute;
+    top: 4.5%;
+    right: 24.9%;
+
+    /* margin-right: 5.7%; */
+}
 
 
 
