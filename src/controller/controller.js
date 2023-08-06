@@ -1,3 +1,7 @@
+export function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export function capFirstLetter(str) {
     const firstLetter = str.charAt(0)
 

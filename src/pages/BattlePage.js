@@ -1,8 +1,9 @@
+import _ from 'lodash';
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { setPageBackground, capFirstLetter } from '../controller/controller'
+import { setPageBackground, capFirstLetter, sleep } from '../controller/controller'
 import { weaknessCheck, setTypeMatchup } from '../controller/pkmnTypesController'
-import { damageCalc, speedCheck, getRandomMove } from '../controller/pkmnBattleController'
+import { damageCalc, speedCheck, getRandomMove, attackHandler } from '../controller/pkmnBattleController'
 import '../styles/battlePage.css'
 import moveJson from '../data/moves.json';
 import grassBg from '../assets/pokemonBWBG/battle_bg_grass.png'
@@ -13,9 +14,14 @@ import indoorBg from '../assets/pokemonBWBG/battle_bg_indoor.png'
 // const yourHp = new HealthBar(300);
 // const oppHp = new HealthBar(250);
 
-
+let canAttack = true;
+let canSwitch = true;
 
 export default function BattlePage() {
+    // function sleep(ms) {
+    //     return new Promise(resolve => setTimeout(resolve, ms));
+    // }
+    
     setPageBackground('');
 
     const navigate = useNavigate();
@@ -23,7 +29,7 @@ export default function BattlePage() {
     const [oppPkmn, setOppPkmn] = useState({});
     const [titleText, setTitleText] = useState('');
     const [trainer, setTrainer] = useState('');
-    const [pkmnParty, setPkmnParty] = useState([]);
+    let [pkmnParty, setPkmnParty] = useState([]);
     const [yourHp, setYourHp] = useState([100, 100]);
     const [oppHp, setOppHp] = useState([100, 100]);
     const [yourFillStyle, setYourFillStyle] = useState({});
@@ -59,17 +65,16 @@ export default function BattlePage() {
     }, [oppPkmn])
 
     useEffect(() => {
-        if (pkmnParty[0]) setYourHp([pkmnParty[0]['hp'], pkmnParty[0]['currentHp']])
-        
+        if (pkmnParty[0]) {
+            setYourHp([pkmnParty[0]['hp'], pkmnParty[0]['currentHp']])
+        }
     }, [pkmnParty])
 
     useEffect(() => {
         const hp = Math.floor(yourHp[1] / yourHp[0] * 100);
-        console.log(yourHp[1])
         if (hp > 49) {
             setYourFillColor('rgb(2,203,88)');
         } else if (hp > 20 && hp <= 49) {
-            console.log(1)
             setYourFillColor('rgb(245,213,55)');
         } else {
             setYourFillColor('rgb(238,74,39)');
@@ -85,7 +90,6 @@ export default function BattlePage() {
         if (hp > 49) {
             setOppFillColor('rgb(2,203,88)');
         } else if (hp > 20 && hp <= 49) {
-            console.log(1)
             setOppFillColor('rgb(245,213,55)');
         } else {
             setOppFillColor('rgb(238,74,39)');
@@ -96,15 +100,38 @@ export default function BattlePage() {
         })
     }, [oppHp, oppFillColor])
 
-    function damageHandler(target, dmg) {
+    function damageHandler(target, dmg, pkmnSwitch) {
+        if (target === 'opp') {
+            setOppPkmn(prevOppPkmn => {
+                const newOppPkmn = { ...prevOppPkmn };
+                newOppPkmn['currentHp'] -= dmg;
+                if (newOppPkmn['currentHp'] < 0) newOppPkmn['currentHp'] = 0;
+                oppPkmn['currentHp'] = newOppPkmn['currentHp'];
+                return newOppPkmn;
+            });
+            return dmg;
+        }
+    
         if (target === 'player') {
-            const newArray = [...pkmnParty];
-            newArray[0]['currentHp'] -= dmg;
-            setPkmnParty(newArray);
+            setPkmnParty(prevPkmnParty => {
+                if (pkmnSwitch) pkmnParty = prevPkmnParty;
+                console.log(pkmnParty)
+                const newPkmnParty = [...prevPkmnParty];
+                newPkmnParty[0]['currentHp'] -= dmg;
+                if (newPkmnParty[0]['currentHp'] < 0) newPkmnParty[0]['currentHp'] = 0;
+                pkmnParty[0]['currentHp'] = newPkmnParty[0]['currentHp']
+                return newPkmnParty;
+            });
+            return dmg;
         }
     }
 
-    function handleMoveClick(e) {
+    async function handleMoveClick(e) {
+        if (!canAttack) return false;
+
+        canAttack = false;
+        canSwitch = false;
+
         const oppMove = getRandomMove(oppPkmn['moves'])
         const yourMove = e.target.textContent
 
@@ -112,12 +139,24 @@ export default function BattlePage() {
 
         const yourDmg = damageCalc(pkmnParty[0], moveJson[yourMove], oppPkmn);
         const oppDmg = damageCalc(oppPkmn, moveJson[oppMove], pkmnParty[0]);
-        console.log(yourDmg, oppDmg);
+        
+        attackHandler(attackOrder, pkmnParty[0], oppPkmn, yourDmg, oppDmg, damageHandler, 2000);
+
+        await sleep(1000);
+        canAttack = true;
+        canSwitch = true;
+        console.log('actions freed')
     }
 
-    function handlePkmnSwitch(e) {
+    async function handlePkmnSwitch(e) {
+        if (!canSwitch) return false;
+
+        canAttack = false;
+        canSwitch = false;
+        
         const index1 = 0;
         const index2 = Number(e.target.className);
+        const leadPkmnHp = pkmnParty[0]['currentHp'];
 
         if (index1 < 0 || index1 >= pkmnParty.length || index2 < 0 || index2 >= pkmnParty.length) {
           // Index out of bounds, return without modifying the array
@@ -134,6 +173,20 @@ export default function BattlePage() {
     
         // Update the state with the modified array
         setPkmnParty(newArray);
+
+        if (leadPkmnHp > 0) {
+            await sleep(1000);
+            const oppMove = getRandomMove(oppPkmn['moves'])
+            const oppDmg = damageCalc(oppPkmn, moveJson[oppMove], pkmnParty[0]);
+            
+            attackHandler(['opp', 'none'], pkmnParty[0], oppPkmn, 0, oppDmg, damageHandler, 0, true);
+            console.log(pkmnParty)
+        }
+
+        await sleep(500);
+        canAttack = true;
+        canSwitch = true;
+        console.log('actions freed')
       };
 
 
