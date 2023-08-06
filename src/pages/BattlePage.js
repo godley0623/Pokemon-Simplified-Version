@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { setPageBackground, capFirstLetter } from '../controller/controller'
+import { weaknessCheck, setTypeMatchup } from '../controller/pkmnTypesController'
+import { damageCalc, speedCheck, getRandomMove } from '../controller/pkmnBattleController'
 import '../styles/battlePage.css'
 import moveJson from '../data/moves.json';
-
 import grassBg from '../assets/pokemonBWBG/battle_bg_grass.png'
 import indoorBg from '../assets/pokemonBWBG/battle_bg_indoor.png'
+
 
 // import { HealthBar } from '../classes/healthBar';
 // const yourHp = new HealthBar(300);
@@ -18,7 +20,7 @@ export default function BattlePage() {
 
     const navigate = useNavigate();
     const param = useParams()['type'];
-    const [wildPkmn, setWildPkmn] = useState({});
+    const [oppPkmn, setOppPkmn] = useState({});
     const [titleText, setTitleText] = useState('');
     const [trainer, setTrainer] = useState('');
     const [pkmnParty, setPkmnParty] = useState([]);
@@ -44,17 +46,17 @@ export default function BattlePage() {
         if (!localStorage.getItem('PSV: wild-pkmn') && param === 'wild') {
             navigate('/play');
         } else {
-            setWildPkmn(JSON.parse(localStorage.getItem('PSV: wild-pkmn')))
+            setOppPkmn(JSON.parse(localStorage.getItem('PSV: wild-pkmn')))
             localStorage.removeItem('PSV: wild-pkmn');
         }
     }, [])
 
     useEffect(() => {
-        if (wildPkmn['name']) {
-            setTitleText(`A wild ${capFirstLetter(wildPkmn['name'])} appeared!`)
+        if (oppPkmn['name']) {
+            setTitleText(`A wild ${capFirstLetter(oppPkmn['name'])} appeared!`)
         }
-        setOppHp([wildPkmn['hp'], wildPkmn['currentHp']])
-    }, [wildPkmn])
+        setOppHp([oppPkmn['hp'], oppPkmn['currentHp']])
+    }, [oppPkmn])
 
     useEffect(() => {
         if (pkmnParty[0]) setYourHp([pkmnParty[0]['hp'], pkmnParty[0]['currentHp']])
@@ -63,7 +65,7 @@ export default function BattlePage() {
 
     useEffect(() => {
         const hp = Math.floor(yourHp[1] / yourHp[0] * 100);
-        console.log(hp)
+        console.log(yourHp[1])
         if (hp > 49) {
             setYourFillColor('rgb(2,203,88)');
         } else if (hp > 20 && hp <= 49) {
@@ -80,7 +82,6 @@ export default function BattlePage() {
 
     useEffect(() => {
         const hp = Math.floor(oppHp[1] / oppHp[0] * 100);
-        console.log(hp)
         if (hp > 49) {
             setOppFillColor('rgb(2,203,88)');
         } else if (hp > 20 && hp <= 49) {
@@ -95,9 +96,46 @@ export default function BattlePage() {
         })
     }, [oppHp, oppFillColor])
 
-    function handleMoveClick() {
-        setOppHp([oppHp[0], oppHp[1] - 5]);
+    function damageHandler(target, dmg) {
+        if (target === 'player') {
+            const newArray = [...pkmnParty];
+            newArray[0]['currentHp'] -= dmg;
+            setPkmnParty(newArray);
+        }
     }
+
+    function handleMoveClick(e) {
+        const oppMove = getRandomMove(oppPkmn['moves'])
+        const yourMove = e.target.textContent
+
+        const attackOrder = speedCheck(pkmnParty[0], moveJson[yourMove], oppPkmn, moveJson[oppMove]);
+
+        const yourDmg = damageCalc(pkmnParty[0], moveJson[yourMove], oppPkmn);
+        const oppDmg = damageCalc(oppPkmn, moveJson[oppMove], pkmnParty[0]);
+        console.log(yourDmg, oppDmg);
+    }
+
+    function handlePkmnSwitch(e) {
+        const index1 = 0;
+        const index2 = Number(e.target.className);
+
+        if (index1 < 0 || index1 >= pkmnParty.length || index2 < 0 || index2 >= pkmnParty.length) {
+          // Index out of bounds, return without modifying the array
+          return;
+        }
+    
+        // Create a copy of the original array
+        const newArray = [...pkmnParty];
+    
+        // Perform the switch
+        const temp = newArray[index1];
+        newArray[index1] = newArray[index2];
+        newArray[index2] = temp;
+    
+        // Update the state with the modified array
+        setPkmnParty(newArray);
+      };
+
 
   return (
     <div className='battle-page' >
@@ -116,9 +154,9 @@ export default function BattlePage() {
                     }
                 </div>
                 <div className='opp-hp-container'>
-                    {wildPkmn['name'] &&
+                    {oppPkmn['name'] &&
                     <>
-                        <h3>{capFirstLetter(wildPkmn['name'])}</h3>
+                        <h3>{capFirstLetter(oppPkmn['name'])}</h3>
                         <div className='hp-bar'>
                             <p className='hp-percent'>{`${Math.floor(oppHp[1] / oppHp[0] * 100)}%`}</p>
                             <div className='fill' style={oppFillStyle}></div>
@@ -127,9 +165,9 @@ export default function BattlePage() {
                     }
                 </div>
                 <div className='bg' style={bgStyle}>
-                    {wildPkmn['sprite'] &&
+                    {oppPkmn['sprite'] &&
                     <div className='opp-field'>
-                        <img src={wildPkmn['sprite'][0]} alt='opponent pokemon sprite' />
+                        <img src={oppPkmn['sprite'][0]} alt='opponent pokemon sprite' />
                     </div>
                     }
                     {pkmnParty[0] &&
@@ -152,8 +190,8 @@ export default function BattlePage() {
             <div className='battle-party-container'>
                 {pkmnParty &&
                 pkmnParty.map((pkmn, key) => (
-                   <div key={key} className='icon-container'>
-                        <img src={pkmn['icon']} alt='pokemon icon'/>
+                   <div key={key} className={`icon-container ${key}`} onClick={handlePkmnSwitch}>
+                        <img className={`${key}`} src={pkmn['icon']} alt='pokemon icon'/>
                    </div> 
                 ))
                 }
