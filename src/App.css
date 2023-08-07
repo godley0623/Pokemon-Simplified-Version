@@ -1,6 +1,11 @@
 html {
   /* background-color: black; */
 }
+
+.hidden {
+  display: none;
+}
+
 .App {
   text-align: center;
 }

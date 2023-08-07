@@ -2,11 +2,12 @@ import _ from 'lodash';
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { setPageBackground, capFirstLetter, sleep } from '../controller/controller'
-import { damageCalc, speedCheck, getRandomMove, attackHandler, faintHandler } from '../controller/pkmnBattleController'
-import '../styles/battlePage.css'
+import { damageCalc, speedCheck, getRandomMove, attackHandler, faintHandler, fullHealParty } from '../controller/pkmnBattleController';
+import '../styles/battlePage.css';
 import moveJson from '../data/moves.json';
-import grassBg from '../assets/pokemonBWBG/battle_bg_grass.png'
-import indoorBg from '../assets/pokemonBWBG/battle_bg_indoor.png'
+import grassBg from '../assets/pokemonBWBG/battle_bg_grass.png';
+import indoorBg from '../assets/pokemonBWBG/battle_bg_indoor.png';
+import pokeball from '../assets/pokeball.png';
 
 let canAttack = true;
 let canSwitch = true;
@@ -47,7 +48,8 @@ export default function BattlePage() {
     useEffect(() => {
         if (param !== 'wild') navigate('/play')
 
-        const lsParty = JSON.parse(localStorage.getItem('PSV: pkmn-party'))
+        const lsParty = JSON.parse(localStorage.getItem('PSV: pkmn-party'));
+        fullHealParty(lsParty);
         setPkmnParty(lsParty);
         
         if (!localStorage.getItem('PSV: wild-pkmn') && param === 'wild') {
@@ -107,6 +109,31 @@ export default function BattlePage() {
 
     }, [oppHp, oppFillColor])
 
+    function handleRun() {
+        navigate('/play')
+    }
+
+    function handleCatch(e) {
+        const pokeball = e.target;
+        const partyNum = pkmnParty.length;
+
+        if (param === 'wild') {
+            if (oppHp[1] === 0) {
+                if (partyNum < 6) {
+                    pkmnParty.push(oppPkmn);
+                    console.log(pkmnParty);
+                    localStorage.setItem('PSV: pkmn-party', JSON.stringify(pkmnParty));
+
+                    pokeball.classList.add('hidden');
+                }
+            } else {
+                console.log('You need to defeat the pokemon before you can catch it.')
+            }
+        } else {
+            console.log("You can't catch a trainer's Pokemon.")
+        }
+    }
+
     function damageHandler(target, dmg, pkmnSwitch) {
         if (target === 'opp') {
             setOppPkmn(prevOppPkmn => {
@@ -150,7 +177,7 @@ export default function BattlePage() {
         const yourDmg = damageCalc(pkmnParty[0], moveJson[yourMove], oppPkmn);
         const oppDmg = damageCalc(oppPkmn, moveJson[oppMove], pkmnParty[0]);
         
-        attackHandler(attackOrder, pkmnParty[0], oppPkmn, yourDmg, oppDmg, damageHandler, 2000, false, currentPlayer, currentOpp);
+        attackHandler(attackOrder, pkmnParty[0], oppPkmn, yourDmg[0], oppDmg[0], damageHandler, 2000, false, currentPlayer, currentOpp, yourDmg[1], yourDmg[2], oppDmg[1], oppDmg[2]);
 
         await sleep(3000);
         canAttack = true;
@@ -200,9 +227,9 @@ export default function BattlePage() {
         if (leadPkmnHp > 0) {
             await sleep(1000);
             const oppMove = getRandomMove(oppPkmn['moves'])
-            const oppDmg = damageCalc(oppPkmn, moveJson[oppMove], pkmnParty[0]);
+            const oppDmg = damageCalc(oppPkmn, moveJson[oppMove], pkmnParty[index2]);
             
-            attackHandler(['opp', 'none'], pkmnParty[0], oppPkmn, 0, oppDmg, damageHandler, 0, true, currentPlayer, currentOpp);
+            attackHandler(['opp', 'none'], pkmnParty[0], oppPkmn, 0, oppDmg[0], damageHandler, 0, true, currentPlayer, currentOpp, '', '', oppDmg[1], oppDmg[2]);
             switchTime = 1000;
         }
 
@@ -265,14 +292,23 @@ export default function BattlePage() {
                 ))
                 }
             </div>
-            <div className='battle-party-container'>
-                {pkmnParty &&
-                pkmnParty.map((pkmn, key) => (
-                   <div key={key} className={`icon-container ${key}`} onClick={handlePkmnSwitch}>
-                        <img className={`${key}`} src={pkmn['icon']} alt='pokemon icon'/>
-                   </div> 
-                ))
-                }
+            <div className='party-catch-container'>
+                <div className='battle-party-container'>
+                    {pkmnParty &&
+                    pkmnParty.map((pkmn, key) => (
+                    <div key={key} className={`icon-container ${key}`} onClick={handlePkmnSwitch}>
+                            <img className={`${key}`} src={pkmn['icon']} alt='pokemon icon'/>
+                    </div> 
+                    ))
+                    }
+                </div>
+                
+                <div className='run-catch-container'>
+                    <div className='catch-container'>
+                        <img onClick={handleCatch} className='pokeball' src={pokeball} alt='pokeball sprite'/>
+                    </div>
+                    <div onClick={handleRun} className='run-container'>Run</div>
+                </div>
             </div>
             <div className='battle-message-box'></div>
         </div>

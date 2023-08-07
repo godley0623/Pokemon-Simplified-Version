@@ -2,6 +2,12 @@ import { weaknessCheck, setTypeMatchup } from "./pkmnTypesController";
 import { capFirstLetter, sleep } from "./controller";
 import { delay } from "lodash";
 
+export function fullHealParty(pkmnParty) {
+    for (let i=0; i<pkmnParty.length; i++) {
+        pkmnParty[i]['currentHp'] = pkmnParty[i]['hp'];
+    }
+}
+
 function stabCheck(attacker, attackerMove) {
     if (attackerMove['type'] === attacker['type'][0] || attackerMove['type'] === attacker['type'][1]) {
         return 1.5;
@@ -56,7 +62,34 @@ export function damageCalc(attacker, attackerMove, defender) {
 
     const damage = ( ( ( (2 * level/5) + 2 ) * (power * .75) * (attack/defense) / 50) + 2) * random * burn * type * stab;
 
-    return Math.floor(damage);
+    let typeText = '';
+    let critText = '';
+
+    if (critical === 1.5) critText = "It's a critical hit!!!";
+
+    switch(type) {
+        case 2:
+            typeText = "It's super effective!!!";
+        break;
+        
+        case 1.5:
+            typeText = "It's super effective!";
+        break;
+
+        case .5:
+            typeText = "It's not very effective!!!";
+        break;
+
+        case .75:
+            typeText = "It's not very effective!";
+        break;
+
+        case 0:
+            typeText = `It doesn't affect ${capFirstLetter(defender['name'])}`
+        break;
+    }
+
+    return [Math.floor(damage), typeText, critText];
 
 }
 
@@ -89,16 +122,28 @@ export function speedCheck(yourPkmn, yourMove, oppPkmn, oppMove) {
     return speedTie;
 }
 
-export async function attackHandler (attackOrder, yourPkmn, oppPkmn, yourDmg, oppDmg, damageHandler, timeDelay, pkmnSwitch = false, yourPkmnImg, oppPkmnImg) {
+export async function attackHandler (attackOrder, yourPkmn, oppPkmn, yourDmg, oppDmg, damageHandler, timeDelay, pkmnSwitch = false, yourPkmnImg, oppPkmnImg, yourTypeText, yourCritText, oppTypeText, oppCritText) {
     if (attackOrder[0] === 'player') {
         if (yourPkmn['currentHp'] >= 1) {
             yourPkmnImg.classList.add('attack-player')
             damageHandler('opp', yourDmg, pkmnSwitch);
+            if (yourTypeText) {
+                console.log(yourTypeText);
+            }
+            if (yourCritText) {
+                console.log(yourCritText);
+            }
         }
     } if (attackOrder[0] === 'opp') {
         if (oppPkmn['currentHp'] >= 1) {
             oppPkmnImg.classList.add('attack-opp')
             damageHandler('player', oppDmg, pkmnSwitch);
+            if (oppTypeText) {
+                console.log(oppTypeText);
+            }
+            if (oppCritText) {
+                console.log(oppCritText);
+            }
         }
     }
 
@@ -109,11 +154,23 @@ export async function attackHandler (attackOrder, yourPkmn, oppPkmn, yourDmg, op
         if (yourPkmn['currentHp'] >= 1) {
             yourPkmnImg.classList.add('attack-player');
             damageHandler('opp', yourDmg);
+            if (yourTypeText) {
+                console.log(yourTypeText);
+            }
+            if (yourCritText) {
+                console.log(yourCritText);
+            }
         }
     } if (attackOrder[1] === 'opp') {
         if (oppPkmn['currentHp'] >= 1) {
             oppPkmnImg.classList.add('attack-opp');
             damageHandler('player', oppDmg);
+            if (oppTypeText) {
+                console.log(oppTypeText);
+            }
+            if (oppCritText) {
+                console.log(oppCritText);
+            }
         }
     }
 }

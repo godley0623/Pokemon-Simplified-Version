@@ -118,6 +118,7 @@
     display: flex;
     justify-content: center;
     gap: 1rem;
+    margin-left: 5%;
 }
 .battle-party-container .icon-container {
     background-color: rgba(254, 254, 254, 0.5);
@@ -277,5 +278,54 @@
     }
     100% {
         background-position: 0 50%;
+    }
+}
+
+.party-catch-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.run-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 4.5rem;
+    height: 2.5rem;
+    color: white;
+    font-weight: 700;
+    border-radius: 12px;
+    border: 1px solid white;
+    background: linear-gradient(to bottom, rgb(200, 0, 0), rgb(100, 0, 0));
+
+    cursor: pointer;
+}
+.run-container:hover {
+    background: linear-gradient(to bottom, rgb(255, 0, 0), rgb(200, 0, 0));
+}
+
+.run-catch-container {
+    display: flex;
+    gap: 1rem;
+    margin-right: 5%;
+}
+
+.pokeball {
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+}
+.pokeball:hover {
+    animation: pokeballSpin 375ms ease;
+}
+
+@keyframes pokeballSpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
     }
 }
