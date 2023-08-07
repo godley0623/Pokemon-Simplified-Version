@@ -1,27 +1,17 @@
 import _ from 'lodash';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { setPageBackground, capFirstLetter, sleep } from '../controller/controller'
-import { weaknessCheck, setTypeMatchup } from '../controller/pkmnTypesController'
 import { damageCalc, speedCheck, getRandomMove, attackHandler } from '../controller/pkmnBattleController'
 import '../styles/battlePage.css'
 import moveJson from '../data/moves.json';
 import grassBg from '../assets/pokemonBWBG/battle_bg_grass.png'
 import indoorBg from '../assets/pokemonBWBG/battle_bg_indoor.png'
 
-
-// import { HealthBar } from '../classes/healthBar';
-// const yourHp = new HealthBar(300);
-// const oppHp = new HealthBar(250);
-
 let canAttack = true;
 let canSwitch = true;
 
-export default function BattlePage() {
-    // function sleep(ms) {
-    //     return new Promise(resolve => setTimeout(resolve, ms));
-    // }
-    
+export default function BattlePage() {    
     setPageBackground('');
 
     const navigate = useNavigate();
@@ -37,12 +27,23 @@ export default function BattlePage() {
     const [yourFillColor, setYourFillColor] = useState('rgb(2,203,88)');
     const [oppFillColor, setOppFillColor] = useState('rgb(2,203,88)');
 
+    const yourPkmnImg = useRef(null);
+    const oppPkmnImg = useRef(null);
+
     const bgStyle = {
         backgroundImage: `url(${grassBg})`,
         backgroundSize: '100% 100%',
     };
 
+    //const oppPkmnImg = document.querySelector('.opp-pkmn-img');
+    //const yourPkmnImg = document.querySelector('.your-pkmn-img');
+
     
+    useEffect(() => {
+    }, [yourPkmnImg])
+    useEffect(() => {
+    }, [oppPkmnImg])
+
     useEffect(() => {
         if (param !== 'wild') navigate('/play')
 
@@ -115,7 +116,6 @@ export default function BattlePage() {
         if (target === 'player') {
             setPkmnParty(prevPkmnParty => {
                 if (pkmnSwitch) pkmnParty = prevPkmnParty;
-                console.log(pkmnParty)
                 const newPkmnParty = [...prevPkmnParty];
                 newPkmnParty[0]['currentHp'] -= dmg;
                 if (newPkmnParty[0]['currentHp'] < 0) newPkmnParty[0]['currentHp'] = 0;
@@ -127,7 +127,11 @@ export default function BattlePage() {
     }
 
     async function handleMoveClick(e) {
+        const currentPlayer = yourPkmnImg.current;
+        const currentOpp = oppPkmnImg.current;
+
         if (!canAttack) return false;
+        if (oppPkmn['currentHp'] <= 0 || pkmnParty[0]['currentHp'] <= 0) return false;
 
         canAttack = false;
         canSwitch = false;
@@ -140,16 +144,21 @@ export default function BattlePage() {
         const yourDmg = damageCalc(pkmnParty[0], moveJson[yourMove], oppPkmn);
         const oppDmg = damageCalc(oppPkmn, moveJson[oppMove], pkmnParty[0]);
         
-        attackHandler(attackOrder, pkmnParty[0], oppPkmn, yourDmg, oppDmg, damageHandler, 2000);
+        attackHandler(attackOrder, pkmnParty[0], oppPkmn, yourDmg, oppDmg, damageHandler, 2000, false, currentPlayer, currentOpp);
 
-        await sleep(1000);
+        await sleep(3000);
         canAttack = true;
         canSwitch = true;
         console.log('actions freed')
+        currentPlayer.classList.remove('attack-player');
+        currentOpp.classList.remove('attack-opp');
     }
 
     async function handlePkmnSwitch(e) {
         if (!canSwitch) return false;
+
+        const currentPlayer = yourPkmnImg.current;
+        const currentOpp = oppPkmnImg.current;
 
         canAttack = false;
         canSwitch = false;
@@ -157,6 +166,13 @@ export default function BattlePage() {
         const index1 = 0;
         const index2 = Number(e.target.className);
         const leadPkmnHp = pkmnParty[0]['currentHp'];
+
+        if (pkmnParty[index2]['currentHp'] <= 0) {
+            console.log("You can't switch to a fainted Pokemon.")
+            canAttack = true;
+            canSwitch = true;
+            return false;
+        }
 
         if (index1 < 0 || index1 >= pkmnParty.length || index2 < 0 || index2 >= pkmnParty.length) {
           // Index out of bounds, return without modifying the array
@@ -173,20 +189,23 @@ export default function BattlePage() {
     
         // Update the state with the modified array
         setPkmnParty(newArray);
-
+        
+        let switchTime = 500;
         if (leadPkmnHp > 0) {
             await sleep(1000);
             const oppMove = getRandomMove(oppPkmn['moves'])
             const oppDmg = damageCalc(oppPkmn, moveJson[oppMove], pkmnParty[0]);
             
-            attackHandler(['opp', 'none'], pkmnParty[0], oppPkmn, 0, oppDmg, damageHandler, 0, true);
-            console.log(pkmnParty)
+            attackHandler(['opp', 'none'], pkmnParty[0], oppPkmn, 0, oppDmg, damageHandler, 0, true, currentPlayer, currentOpp);
+            switchTime = 1000;
         }
 
-        await sleep(500);
+        await sleep(switchTime);
         canAttack = true;
         canSwitch = true;
         console.log('actions freed')
+        currentPlayer.classList.remove('attack-player');
+        currentOpp.classList.remove('attack-opp');
       };
 
 
@@ -220,12 +239,12 @@ export default function BattlePage() {
                 <div className='bg' style={bgStyle}>
                     {oppPkmn['sprite'] &&
                     <div className='opp-field'>
-                        <img src={oppPkmn['sprite'][0]} alt='opponent pokemon sprite' />
+                        <img className={'opp-pkmn-img'} ref={oppPkmnImg} src={oppPkmn['sprite'][0]} alt='opponent pokemon sprite' />
                     </div>
                     }
                     {pkmnParty[0] &&
                     <div className='your-field'>
-                        <img src={pkmnParty[0]['sprite'][1]} alt='your pokemon sprite' />
+                        <img className={'your-pkmn-img'} ref={yourPkmnImg} src={pkmnParty[0]['sprite'][1]} alt='your pokemon sprite' />
                     </div>
                     }
                 </div>

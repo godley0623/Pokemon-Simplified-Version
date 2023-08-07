@@ -89,13 +89,15 @@ export function speedCheck(yourPkmn, yourMove, oppPkmn, oppMove) {
     return speedTie;
 }
 
-export async function attackHandler (attackOrder, yourPkmn, oppPkmn, yourDmg, oppDmg, damageHandler, timeDelay, pkmnSwitch = false) {
+export async function attackHandler (attackOrder, yourPkmn, oppPkmn, yourDmg, oppDmg, damageHandler, timeDelay, pkmnSwitch = false, yourPkmnImg, oppPkmnImg) {
     if (attackOrder[0] === 'player') {
         if (yourPkmn['currentHp'] >= 1) {
+            yourPkmnImg.classList.add('attack-player')
             damageHandler('opp', yourDmg, pkmnSwitch);
         }
     } if (attackOrder[0] === 'opp') {
         if (oppPkmn['currentHp'] >= 1) {
+            oppPkmnImg.classList.add('attack-opp')
             damageHandler('player', oppDmg, pkmnSwitch);
         }
     }
@@ -105,10 +107,12 @@ export async function attackHandler (attackOrder, yourPkmn, oppPkmn, yourDmg, op
 
     if (attackOrder[1] === 'player') {
         if (yourPkmn['currentHp'] >= 1) {
+            yourPkmnImg.classList.add('attack-player');
             damageHandler('opp', yourDmg);
         }
     } if (attackOrder[1] === 'opp') {
         if (oppPkmn['currentHp'] >= 1) {
+            oppPkmnImg.classList.add('attack-opp');
             damageHandler('player', oppDmg);
         }
     }
