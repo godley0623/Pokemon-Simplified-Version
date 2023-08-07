@@ -117,3 +117,17 @@ export async function attackHandler (attackOrder, yourPkmn, oppPkmn, yourDmg, op
         }
     }
 }
+
+export function faintHandler(img, hp, faintSpd) {
+    if (img.current) {
+        if (hp[1] === 0) {
+            img.current.classList.add('faint');
+            setTimeout(() => {
+                img.current.classList.remove('faint');
+                img.current.classList.add('fainted');
+            }, faintSpd)
+        } else {
+            img.current.classList.remove('fainted');
+        }
+    }
+}

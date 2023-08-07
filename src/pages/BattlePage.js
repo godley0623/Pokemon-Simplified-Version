@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { setPageBackground, capFirstLetter, sleep } from '../controller/controller'
-import { damageCalc, speedCheck, getRandomMove, attackHandler } from '../controller/pkmnBattleController'
+import { damageCalc, speedCheck, getRandomMove, attackHandler, faintHandler } from '../controller/pkmnBattleController'
 import '../styles/battlePage.css'
 import moveJson from '../data/moves.json';
 import grassBg from '../assets/pokemonBWBG/battle_bg_grass.png'
@@ -84,6 +84,9 @@ export default function BattlePage() {
             width: `${hp}%`,
             background: yourFillColor,
         })
+
+        faintHandler(yourPkmnImg, yourHp, 750);
+
     }, [yourHp, yourFillColor])
 
     useEffect(() => {
@@ -99,6 +102,9 @@ export default function BattlePage() {
             width: `${hp}%`,
             background: oppFillColor,
         })
+        
+        faintHandler(oppPkmnImg, oppHp, 750);
+
     }, [oppHp, oppFillColor])
 
     function damageHandler(target, dmg, pkmnSwitch) {
