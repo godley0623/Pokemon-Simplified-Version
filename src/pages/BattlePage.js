@@ -245,7 +245,7 @@ export default function BattlePage() {
   return (
     <div className='battle-page' >
         <div className='battle-container'>
-            {`${titleText}`}
+            <h1 className='title'>{`${titleText}`}</h1>
             <div className='bg-container'>
                 <div className='your-hp-container'>
                     {pkmnParty[0] &&

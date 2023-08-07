@@ -11,6 +11,11 @@
     animation: gradientChange 10s ease infinite;
 }
 
+.title {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-family: 'Press Start 2P', cursive;
+}
+
 .battle-container {
     width: 75%;
     height: 100%;
@@ -112,6 +117,24 @@
 .poison:hover {
     background: rgb(220,158,250);
 }
+.rock {
+    background: linear-gradient(to bottom, rgb(198,183,140), rgb(148, 133, 90));  
+}
+.rock:hover {
+    background: rgb(248, 233, 190);
+}
+.ground {
+    background: linear-gradient(to bottom, rgb(217,121,69), rgb(167,71,19));  
+}
+.ground:hover {
+    background: rgb(255, 171, 119);
+}
+.fairy {
+    background: linear-gradient(to bottom, rgb(236,142,230), rgb(186,92,180));  
+}
+.fairy:hover {
+    background: rgb(255, 192, 255);
+}
 
 
 .battle-party-container {
@@ -154,7 +177,7 @@
 
 .hp-bar {
     position: absolute;
-    top: 37%;
+    top: 42%;
 
     width: 15rem;
     height: 1.2rem;
@@ -178,14 +201,14 @@
 }
 .your-hp-container h3 {
     position: absolute;
-    top: 31%;
+    top: 36%;
 
     margin-left: 0.5%;
 }
 
 .opp-hp-container .hp-bar {
     position: absolute;
-    top: 10%;
+    top: 20%;
     right: 13%;
 
     width: 15rem;
@@ -196,7 +219,7 @@
 }
 .opp-hp-container h3 {
     position: absolute;
-    top: 4.5%;
+    top: 14.5%;
     right: 24.9%;
 
     /* margin-right: 5.7%; */
