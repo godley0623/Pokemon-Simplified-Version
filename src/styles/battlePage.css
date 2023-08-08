@@ -135,6 +135,24 @@
 .fairy:hover {
     background: rgb(255, 192, 255);
 }
+.steel {
+    background: linear-gradient(to bottom, rgb(91,143,162), rgb(41,93,112));  
+}
+.steel:hover {
+    background: rgb(141,193,212);
+}
+.electric {
+    background: linear-gradient(to bottom, rgb(244,210,59), rgb(194,160,9));  
+}
+.electric:hover {
+    background: rgb(255,255,59);
+}
+.normal {
+    background: linear-gradient(to bottom, rgb(146,157,162), rgb(96,107,112));  
+}
+.normal:hover {
+    background: rgb(196, 207, 212);
+}
 
 
 .battle-party-container {
