@@ -1,0 +1,81 @@
+.pkmn-stat-display {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 99999;
+
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+}
+
+.pkmn-stat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5%;
+
+    color: white;
+
+    width: 50%;
+    height: 50%;
+
+    background: linear-gradient(to bottom, rgb(0,0,0), rgb(0,0,150));
+
+    border-radius: 1.5rem;
+
+    padding-top: 2.5%;
+}
+.pkmn-stat-container .pkmn-stats {
+    display: flex;
+    gap: 5%;
+}
+.pkmn-stat-container .pkmn-type-container {
+    display: flex;
+    justify-content: center;
+}
+.pkmn-type-container img {
+    width: 8rem;
+}
+.pkmn-stat-container .button-container {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 5%;
+
+    width: 60%;
+}
+
+.front-button, .box-button, .matchup-button {
+    border: 1px solid white;
+    width: 100%;
+    height: 125%;
+    border-radius: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background: linear-gradient(to bottom,#4ca363,#276136);
+
+    cursor: pointer;
+}
+
+.release-button {
+    border: 1px solid white;
+    width: 100%;
+    height: 125%;
+    border-radius: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background: linear-gradient(to bottom, rgb(200, 0, 0), rgb(100, 0, 0));
+
+    cursor: pointer;
+}

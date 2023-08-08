@@ -23,6 +23,7 @@ export default function PlayPage() {
     }
   return (
     <div className='play-page'>
+        <div id='stat-display'></div>
         {!getPkmnParty() && 
             <div className='get-starter-pokemon'>
                 <p>You don't have any Pokemon</p>
