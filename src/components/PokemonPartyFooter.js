@@ -2,18 +2,21 @@ import React, { useState, useEffect } from 'react'
 import { createRoot } from 'react-dom/client';
 import PkmnStatDisplay from './PkmnStatDisplay'
 
+let root;
+
 export default function PokemonPartyFooter() {
     const [pkmnParty, setPkmnParty] = useState(JSON.parse(localStorage.getItem('PSV: pkmn-party')))
 
     useEffect(() => {
         if (!pkmnParty) setPkmnParty([])
+        root = createRoot(document.getElementById('stat-display'))
     }, []);
 
     function handlePkmnStats(e) {
         const partyIndex = Number(e.target.className);
         const pkmn = pkmnParty[partyIndex];
-
-        createRoot(document.getElementById('stat-display')).render(<PkmnStatDisplay page='' pkmn={pkmn} moves={true} release={true} front={true} box={true} matchup={true} />);
+        
+        root.render(<PkmnStatDisplay root={root} setPkmnParty={setPkmnParty} page='' index={partyIndex} pkmn={pkmn} moves={true} release={true} front={true} box={true} matchup={true} />);
     }
 
   return (

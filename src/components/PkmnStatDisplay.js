@@ -8,6 +8,24 @@ export default function PkmnStatDisplay(props) {
     const pkmnType1 = pkmnTypes[props.pkmn.type[0]];
     const pkmnType2 = pkmnTypes[props.pkmn.type[1]];
 
+    function closeDisplay() {
+        props.root.render(<></>);
+    }
+
+    function handleFrontButton() {
+        const pkmnParty = JSON.parse(localStorage.getItem('PSV: pkmn-party'));
+        const partyClone = [...pkmnParty];
+
+        pkmnParty[0] = partyClone[props.index];
+        pkmnParty[props.index] = partyClone[0];
+
+        props.setPkmnParty(pkmnParty);
+
+        localStorage.setItem('PSV: pkmn-party', JSON.stringify(pkmnParty));
+
+        closeDisplay();
+    }
+
   return (
     <div className='pkmn-stat-display'>
         <div className='pkmn-stat-container'>
@@ -23,9 +41,16 @@ export default function PkmnStatDisplay(props) {
                 <p>{`DEF: ${props.pkmn.def}`}</p>
                 <p>{`SPD: ${props.pkmn.spd}`}</p>
             </div>
-            <div className='move-container'></div>
+            <div className='move-container'>
+                Moves
+                <div className='moves'>
+                    {props.pkmn['moves'].map((move, key) => (
+                        <img key={key} src={pkmnTypes[`${move.toLowerCase()}`]} alt='pokemon type'/>
+                    ))}
+                </div>
+            </div>
             <div className='button-container'>
-                <div className='front-button'>Front</div>
+                <div onClick={handleFrontButton} className='front-button'>Front</div>
                 <div className='box-button'>Box</div>
                 <div className='matchup-button'>Matchups</div>
                 <div className='release-button'>Release</div>
