@@ -23,14 +23,35 @@
     color: white;
 
     width: 50%;
-    height: 50%;
+    height: 70%;
 
     background: linear-gradient(to bottom, rgb(0,0,0), rgb(0,0,150));
 
     border-radius: 1.5rem;
 
     padding-top: 2.5%;
-    padding-bottom: 2.5%;
+    /* padding-bottom: 2.5%; */
+}
+.pkmn-stat-container .cancel-button {
+    position: absolute;
+    top: 15%;
+    right: 26%;
+
+    border: 1px solid white;
+    width: 3%;
+    height: 4%;
+    border-radius: .5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background: linear-gradient(to bottom, rgb(200, 0, 0), rgb(100, 0, 0));
+
+    font-weight: 700;
+    font-size: 130%;
+
+    cursor: pointer;
 }
 .pkmn-stat-container .pkmn-stats {
     display: flex;

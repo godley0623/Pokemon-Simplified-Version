@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import bg from '../assets/backgroundImages/type-matchup-bg.jpeg'
-import { setPageBackground, lowerFirstLetter } from '../controller/controller'
+import { setPageBackground, lowerFirstLetter, capFirstLetter } from '../controller/controller'
 import '../styles/typeMatchup.css'
 import { pkmnTypes, setTypeMatchup, weaknessCheck } from '../controller/pkmnTypesController'
 import { getAllPkmnByType } from '../controller/pkmnDataBaseController'
@@ -24,6 +24,17 @@ export default function TypeMatchupPage() {
     const [pkmnList, setPkmnList] = useState([]);
 
     useEffect(() => {
+        const storedTypes = JSON.parse(localStorage.getItem('PSV: stored-types'));
+
+        console.log(storedTypes)
+
+        if (storedTypes) {
+            setSelectedType([capFirstLetter(storedTypes[0]), capFirstLetter(storedTypes[1])]);
+            localStorage.removeItem('PSV: stored-types')
+        }
+    }, [])
+
+    useEffect(() => {
         if (selectedType[0] === selectedType[1] && selectedType[0] !== "None") {
             setSelectedType([selectedType[0], "None"]);
             type2Ref.current.value = "None";
@@ -39,7 +50,6 @@ export default function TypeMatchupPage() {
         setResistance([...weaknessCheck(setTypeMatchup([selectedType[0], selectedType[1]]))['fourXRes'], ...weaknessCheck(setTypeMatchup([selectedType[0], selectedType[1]]))['twoXRes']]);
         setImmunity(weaknessCheck(setTypeMatchup([selectedType[0], selectedType[1]]))['immune']);
 
-        console.log(getAllPkmnByType([selectedType[0], selectedType[1]]))
         setPkmnList(getAllPkmnByType([selectedType[0], selectedType[1]]))
 
     }, [selectedType])

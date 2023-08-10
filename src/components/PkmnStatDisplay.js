@@ -26,9 +26,18 @@ export default function PkmnStatDisplay(props) {
         closeDisplay();
     }
 
+    function handleMatchupButton() {
+        const storedTypes = [capFirstLetter(props.pkmn.type[0]), capFirstLetter(props.pkmn.type[1])];
+
+        localStorage.setItem('PSV: stored-types', JSON.stringify(storedTypes))
+
+        window.open("/type-matchup", "_blank");
+    }
+
   return (
     <div className='pkmn-stat-display'>
         <div className='pkmn-stat-container'>
+            <div onClick={closeDisplay} className='cancel-button'>X</div>
             <img src={props.pkmn.sprite[0]} alt='pokemon sprite'/>
             <h3 className='pkmn-name'>{capFirstLetter(props.pkmn.name)}</h3>
             <div className='pkmn-type-container'>
@@ -52,7 +61,7 @@ export default function PkmnStatDisplay(props) {
             <div className='button-container'>
                 <div onClick={handleFrontButton} className='front-button'>Front</div>
                 <div className='box-button'>Box</div>
-                <div className='matchup-button'>Matchups</div>
+                <div onClick={handleMatchupButton} className='matchup-button'>Matchups</div>
                 <div className='release-button'>Release</div>
             </div>
         </div>
