@@ -2,7 +2,9 @@ import genOne from '../data/genone_pkmn.json'
 import genTwo from '../data/gentwo_pkmn.json'
 import genThree from '../data/genthree_pkmn.json'
 import genFour from '../data/genfour_pkmn.json'
-import { getRandomNumber } from './controller'
+import { getRandomNumber, choose } from './controller'
+
+const types = ["Fire", "Water", "Grass", "Electric", "Normal", "Flying", "Bug", "Poison", "Rock", "Ground", "Fighting", "Psychic", "Ghost", "Dark", "Steel", "Fairy", "Ice", "Dragon"];
 
 export const allPkmn = { ...genOne, ...genTwo, ...genThree, ...genFour};
 
@@ -71,3 +73,21 @@ export function setWildPkmn () {
     else if (randNum <= 99) return randMid;
     else return randHigh;
 } 
+
+export function addMove (pkmn, move) {
+    if (pkmn.moves.length >= 4) return pkmn;
+    
+    if (move.toLowerCase() === 'random') {
+        let randomMove = choose(types);
+        if (Math.floor(Math.random() * 100 + 1) <= 20) {
+            randomMove = randomMove + '+';
+        }
+
+        pkmn.moves.push(randomMove);
+        return pkmn
+    } else {
+        pkmn.moves.push(move);
+        return pkmn
+    }
+
+}

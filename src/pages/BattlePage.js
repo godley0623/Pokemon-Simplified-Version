@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { setPageBackground, capFirstLetter, sleep } from '../controller/controller'
 import { damageCalc, speedCheck, getRandomMove, attackHandler, faintHandler, fullHealParty } from '../controller/pkmnBattleController';
+import { addMove } from '../controller/pkmnDataBaseController'
 import '../styles/battlePage.css';
 import moveJson from '../data/moves.json';
 import grassBg from '../assets/pokemonBWBG/battle_bg_grass.png';
@@ -55,7 +56,9 @@ export default function BattlePage() {
         if (!localStorage.getItem('PSV: wild-pkmn') && param === 'wild') {
             navigate('/play');
         } else {
-            setOppPkmn(JSON.parse(localStorage.getItem('PSV: wild-pkmn')))
+            let wildPkmn = JSON.parse(localStorage.getItem('PSV: wild-pkmn'));
+            wildPkmn = addMove(wildPkmn, 'random');
+            setOppPkmn(wildPkmn);
             localStorage.removeItem('PSV: wild-pkmn');
         }
     }, [])

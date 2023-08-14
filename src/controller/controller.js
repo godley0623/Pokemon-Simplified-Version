@@ -33,3 +33,10 @@ export function setPageBackground(bg, bgSize='100% 100%', bgColor='white') {
 export function getRandomNumber(num) {
     return Math.floor(Math.random() * num);
 }
+
+export function choose(arr) {
+    const arrLen = arr.length;
+    const index = Math.floor(Math.random() * arrLen);
+
+    return arr[index];
+}

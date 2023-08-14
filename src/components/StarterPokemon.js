@@ -2,9 +2,11 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { capFirstLetter } from '../controller/controller'
 import { allPkmn, addPkmnToParty } from '../controller/pkmnDataBaseController'
+import { addMove } from '../controller/pkmnDataBaseController'
 
 export default function StarterPokemon(props) {
-  const pokemon = allPkmn[props.name];
+  let pokemon = allPkmn[props.name];
+  pokemon = addMove(pokemon, 'Normal');
   const navigate = useNavigate()
   function handlePkmnClick() {
     addPkmnToParty(pokemon);
