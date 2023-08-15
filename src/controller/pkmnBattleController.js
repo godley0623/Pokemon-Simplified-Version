@@ -1,6 +1,5 @@
 import { weaknessCheck, setTypeMatchup } from "./pkmnTypesController";
-import { capFirstLetter, sleep } from "./controller";
-import { delay } from "lodash";
+import { capFirstLetter, sleep, choose } from "./controller";
 
 export function fullHealParty(pkmnParty) {
     for (let i=0; i<pkmnParty.length; i++) {
@@ -187,4 +186,8 @@ export function faintHandler(img, hp, faintSpd) {
             img.current.classList.remove('fainted');
         }
     }
+}
+
+export function aiRandom(moves) {
+    return choose(moves);
 }

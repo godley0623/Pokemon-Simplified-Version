@@ -3,6 +3,7 @@ import genTwo from '../data/gentwo_pkmn.json'
 import genThree from '../data/genthree_pkmn.json'
 import genFour from '../data/genfour_pkmn.json'
 import { getRandomNumber, choose } from './controller'
+import { easyTrainers } from '../trainers/easy/easyTrainers'
 
 const types = ["Fire", "Water", "Grass", "Electric", "Normal", "Flying", "Bug", "Poison", "Rock", "Ground", "Fighting", "Psychic", "Ghost", "Dark", "Steel", "Fairy", "Ice", "Dragon"];
 
@@ -73,6 +74,17 @@ export function setWildPkmn () {
     else if (randNum <= 99) return randMid;
     else return randHigh;
 } 
+
+export function setTrainer () {
+    const diff = localStorage.getItem('PSV: trainerDiff');
+    let trainer;
+    switch(diff) {
+        case 'Easy':
+            trainer = choose(easyTrainers);
+        break;
+    }
+    return trainer;
+}
 
 export function addMove (pkmn, move) {
     if (pkmn.moves.length >= 4) return pkmn;

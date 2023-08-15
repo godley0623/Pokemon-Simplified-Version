@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import bg from '../assets/backgroundImages/type-matchup-bg.jpeg'
 import { setPageBackground } from '../controller/controller'
-import { getPkmnParty, setWildPkmn } from '../controller/pkmnDataBaseController'
+import { getPkmnParty, setWildPkmn, setTrainer } from '../controller/pkmnDataBaseController'
 import PokemonPartyFooter from '../components/PokemonPartyFooter'
 import BattleOptions from '../components/BattleOptions'
 
@@ -21,6 +21,13 @@ export default function PlayPage() {
         localStorage.setItem('PSV: wild-pkmn', JSON.stringify(wildPkmn));
         navigate('/battle/wild');
     }
+
+    function handleTrainerBattle() {
+        const trainer = setTrainer();
+        localStorage.setItem('PSV: trainer', JSON.stringify(trainer));
+        navigate('battle/trainer');
+    }
+    
   return (
     <div className='play-page'>
         <div id='stat-display'></div>
@@ -34,7 +41,7 @@ export default function PlayPage() {
             <>
                 <div className='battle-options'>
                     <BattleOptions title='Wild' name='wild-battle' options={['Plains']} clickCB={handleWildBattle}/>
-                    <BattleOptions title='Trainer' name='trainer-battle' options={['Easy', 'Normal', 'Hard']} />
+                    <BattleOptions title='Trainer' name='trainer-battle' options={['Easy', 'Normal', 'Hard']} clickCB={handleTrainerBattle}/>
                     <BattleOptions title='Gym' name='gym-battle' options={['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Random']} />
                 </div>
                 <PokemonPartyFooter />

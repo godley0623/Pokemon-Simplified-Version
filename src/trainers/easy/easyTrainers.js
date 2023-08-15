@@ -20,3 +20,7 @@ export const youngsterJoey = new Trainer('Youngster', 'Joey', 'Easy', 'sprite HE
         'ai': ['random']
     }
 ])
+
+export const easyTrainers = [
+    youngsterJoey
+]

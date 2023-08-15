@@ -1,3 +1,5 @@
+
+
 export class Trainer {
     constructor(trainerClass, name, difficulty, sprite, pkmnParty) {
         this.trainerClass = trainerClass;
