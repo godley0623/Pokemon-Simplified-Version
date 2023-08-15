@@ -1,8 +1,8 @@
-import _ from 'lodash';
+//import _ from 'lodash';
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { setPageBackground, capFirstLetter, sleep } from '../controller/controller'
-import { damageCalc, speedCheck, getRandomMove, attackHandler, faintHandler, fullHealParty } from '../controller/pkmnBattleController';
+import { damageCalc, speedCheck, getRandomMove, attackHandler, faintHandler, fullHealParty, handleTrainerMoves } from '../controller/pkmnBattleController';
 import { addMove } from '../controller/pkmnDataBaseController'
 import '../styles/battlePage.css';
 import moveJson from '../data/moves.json';
@@ -37,17 +37,13 @@ export default function BattlePage() {
         backgroundSize: '100% 100%',
     };
 
-    //const oppPkmnImg = document.querySelector('.opp-pkmn-img');
-    //const yourPkmnImg = document.querySelector('.your-pkmn-img');
-
-    
     useEffect(() => {
     }, [yourPkmnImg])
     useEffect(() => {
     }, [oppPkmnImg])
 
     useEffect(() => {
-        if (param !== 'wild') navigate('/play')
+        if (param !== 'wild' && param !== 'trainer') navigate('/play')
 
         const lsParty = JSON.parse(localStorage.getItem('PSV: pkmn-party'));
         fullHealParty(lsParty);
@@ -55,17 +51,33 @@ export default function BattlePage() {
         
         if (!localStorage.getItem('PSV: wild-pkmn') && param === 'wild') {
             navigate('/play');
-        } else {
+        } else if (param === 'wild') {
             let wildPkmn = JSON.parse(localStorage.getItem('PSV: wild-pkmn'));
             wildPkmn = addMove(wildPkmn, 'random');
             setOppPkmn(wildPkmn);
             localStorage.removeItem('PSV: wild-pkmn');
         }
+
+        if (!localStorage.getItem('PSV: trainer') && param === 'trainer') {
+            navigate('/play');
+        } else if (param === 'trainer') {
+            let trainerObj = JSON.parse(localStorage.getItem('PSV: trainer'));
+            let trainerPkmnParty = handleTrainerMoves(trainerObj.pkmnParty);
+
+            setTrainer(trainerObj);
+            setOppPkmn(trainerPkmnParty[0]);
+
+            //localStorage.removeItem('PSV: trainer');
+        }
     }, [])
 
     useEffect(() => {
         if (oppPkmn['name']) {
-            setTitleText(`A wild ${capFirstLetter(oppPkmn['name'])} appeared!`)
+            if (param === 'wild') {
+                setTitleText(`A wild ${capFirstLetter(oppPkmn['name'])} appeared!`)
+            } else if (param === 'trainer') {
+                setTitleText(`${trainer.trainerClass} ${trainer.name} wants to battle!`)
+            }
         }
         setOppHp([oppPkmn['hp'], oppPkmn['currentHp']])
     }, [oppPkmn])
@@ -285,7 +297,7 @@ export default function BattlePage() {
                     }
                 </div>
                 {param !== 'wild' &&
-                <img src={trainer} alt='trainer sprite' />
+                <img className='trainer-img' src={trainer.sprite} alt='trainer sprite' />
                 }
             </div>
             <div className='move-container'>

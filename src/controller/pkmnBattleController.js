@@ -1,5 +1,6 @@
 import { weaknessCheck, setTypeMatchup } from "./pkmnTypesController";
 import { capFirstLetter, sleep, choose } from "./controller";
+import { allPkmn } from "./pkmnDataBaseController";
 
 export function fullHealParty(pkmnParty) {
     for (let i=0; i<pkmnParty.length; i++) {
@@ -186,6 +187,25 @@ export function faintHandler(img, hp, faintSpd) {
             img.current.classList.remove('fainted');
         }
     }
+}
+
+export function handleTrainerMoves(pkmnArr) {
+    const pkmnParty = []
+    for (let i=0; i<pkmnArr.length; i++) {
+        let pkmnName = pkmnArr[i].pokemon;
+        let pkmnMoves = pkmnArr[i].moves;
+        let pkmnItems = pkmnArr[i].items;
+        let pkmnAi = pkmnArr[i].ai;
+        let pkmn = {...allPkmn[pkmnName]};
+        
+        pkmn.moves = pkmnMoves;
+        pkmn.items = pkmnItems;
+        pkmn.ai = pkmnAi;
+
+        pkmnParty.push(pkmn);
+    }
+
+    return pkmnParty;
 }
 
 export function aiRandom(moves) {

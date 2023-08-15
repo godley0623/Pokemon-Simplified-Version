@@ -25,7 +25,7 @@ export default function PlayPage() {
     function handleTrainerBattle() {
         const trainer = setTrainer();
         localStorage.setItem('PSV: trainer', JSON.stringify(trainer));
-        navigate('battle/trainer');
+        navigate('/battle/trainer');
     }
     
   return (
