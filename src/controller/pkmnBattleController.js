@@ -1,6 +1,7 @@
 import { weaknessCheck, setTypeMatchup } from "./pkmnTypesController";
 import { capFirstLetter, sleep, choose } from "./controller";
 import { allPkmn } from "./pkmnDataBaseController";
+import moveJson from "../data/moves.json";
 
 export function fullHealParty(pkmnParty) {
     for (let i=0; i<pkmnParty.length; i++) {
@@ -210,4 +211,32 @@ export function handleTrainerMoves(pkmnArr) {
 
 export function aiRandom(moves) {
     return choose(moves);
+}
+
+export function aiWeakness(moves, defender) {
+    let defenderType = defender.type;
+    defenderType[0] = capFirstLetter(defenderType[0])
+    defenderType[1] = capFirstLetter(defenderType[1])
+    
+    const weaknesses = weaknessCheck(setTypeMatchup(defenderType))
+
+    if (weaknesses.fourXEff.length > 0) {
+        let weakArr = weaknesses.fourXEff;
+        for (let i=0; i<weakArr.length; i++) {
+            for (let j=0; j<moves.length; j++) {
+                if (weakArr[i].toLowerCase() === moveJson[moves[j]]['type'] && moveJson[moves[j]]['power'] > 0) return moves[j]
+            }
+        } 
+    }
+
+    if (weaknesses.twoXEff.length > 0) {
+        let weakArr = weaknesses.twoXEff;
+        for (let i=0; i<weakArr.length; i++) {
+            for (let j=0; j<moves.length; j++) {
+                if (weakArr[i].toLowerCase() === moveJson[moves[j]]['type'] && moveJson[moves[j]]['power'] > 0) return moves[j]
+            }
+        } 
+    }
+
+    return moves[0]
 }

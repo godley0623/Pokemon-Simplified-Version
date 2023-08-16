@@ -4,6 +4,7 @@ import genThree from '../data/genthree_pkmn.json'
 import genFour from '../data/genfour_pkmn.json'
 import { getRandomNumber, choose } from './controller'
 import { easyTrainers } from '../trainers/easy/easyTrainers'
+import { normalTrainers } from '../trainers/normal/normalTrainers'
 
 const types = ["Fire", "Water", "Grass", "Electric", "Normal", "Flying", "Bug", "Poison", "Rock", "Ground", "Fighting", "Psychic", "Ghost", "Dark", "Steel", "Fairy", "Ice", "Dragon"];
 
@@ -82,6 +83,10 @@ export function setTrainer () {
         case 'Easy':
             trainer = choose(easyTrainers);
         break;
+
+        case 'Normal':
+            trainer = choose(normalTrainers);
+        break
     }
     return trainer;
 }

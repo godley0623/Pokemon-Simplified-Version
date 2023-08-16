@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { setPageBackground, capFirstLetter, sleep } from '../controller/controller'
-import { damageCalc, speedCheck, getRandomMove, attackHandler, faintHandler, fullHealParty, handleTrainerMoves, aiRandom } from '../controller/pkmnBattleController';
+import { damageCalc, speedCheck, getRandomMove, attackHandler, faintHandler, fullHealParty, handleTrainerMoves, aiRandom, aiWeakness } from '../controller/pkmnBattleController';
 import { addMove } from '../controller/pkmnDataBaseController'
 import '../styles/battlePage.css';
 import moveJson from '../data/moves.json';
@@ -207,6 +207,10 @@ export default function BattlePage() {
                 switch(oppPkmn.ai[0]) {
                     case 'random':
                         oppMove = aiRandom(oppPkmn['moves'])
+                    break
+                    
+                    case 'weakness':
+                        oppMove = aiWeakness(oppPkmn['moves'], pkmnParty[0])
                     break
                 }
             }
