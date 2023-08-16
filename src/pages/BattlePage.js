@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { setPageBackground, capFirstLetter, sleep } from '../controller/controller'
-import { damageCalc, speedCheck, getRandomMove, attackHandler, faintHandler, fullHealParty, handleTrainerMoves } from '../controller/pkmnBattleController';
+import { damageCalc, speedCheck, getRandomMove, attackHandler, faintHandler, fullHealParty, handleTrainerMoves, aiRandom } from '../controller/pkmnBattleController';
 import { addMove } from '../controller/pkmnDataBaseController'
 import '../styles/battlePage.css';
 import moveJson from '../data/moves.json';
@@ -12,6 +12,9 @@ import pokeball from '../assets/pokeball.png';
 
 let canAttack = true;
 let canSwitch = true;
+
+let trainerPkmnParty;
+let trainerPkmnFainted = [];
 
 export default function BattlePage() {    
     setPageBackground('');
@@ -62,7 +65,7 @@ export default function BattlePage() {
             navigate('/play');
         } else if (param === 'trainer') {
             let trainerObj = JSON.parse(localStorage.getItem('PSV: trainer'));
-            let trainerPkmnParty = handleTrainerMoves(trainerObj.pkmnParty);
+            trainerPkmnParty = handleTrainerMoves(trainerObj.pkmnParty);
 
             setTrainer(trainerObj);
             setOppPkmn(trainerPkmnParty[0]);
@@ -121,6 +124,19 @@ export default function BattlePage() {
         })
         
         faintHandler(oppPkmnImg, oppHp, 750);
+
+        if (oppHp[1] === 0 && param !== 'wild') {
+            setTimeout(() => {
+                const faintedPkmn = trainerPkmnParty.shift()
+                trainerPkmnFainted.push(faintedPkmn)
+
+                if (trainerPkmnParty.length > 0) {
+                    setOppPkmn(trainerPkmnParty[0])
+                }else {
+                    //Handle Win State
+                }
+            }, 2000)
+        }
 
     }, [oppHp, oppFillColor])
 
@@ -183,8 +199,21 @@ export default function BattlePage() {
 
         canAttack = false;
         canSwitch = false;
+        
+        let oppMove;
+        if (oppPkmn.ai) {
 
-        const oppMove = getRandomMove(oppPkmn['moves'])
+            if (oppPkmn.ai.length === 1) {
+                switch(oppPkmn.ai[0]) {
+                    case 'random':
+                        oppMove = aiRandom(oppPkmn['moves'])
+                    break
+                }
+            }
+
+        } else {
+            oppMove = aiRandom(oppPkmn['moves'])
+        }
         const yourMove = e.target.textContent
 
         const attackOrder = speedCheck(pkmnParty[0], moveJson[yourMove], oppPkmn, moveJson[oppMove]);
