@@ -2,6 +2,7 @@ import { weaknessCheck, setTypeMatchup } from "./pkmnTypesController";
 import { capFirstLetter, sleep, choose } from "./controller";
 import { allPkmn } from "./pkmnDataBaseController";
 import moveJson from "../data/moves.json";
+import { set } from "lodash";
 
 export function fullHealParty(pkmnParty) {
     for (let i=0; i<pkmnParty.length; i++) {
@@ -123,27 +124,33 @@ export function speedCheck(yourPkmn, yourMove, oppPkmn, oppMove) {
     return speedTie;
 }
 
-export async function attackHandler (attackOrder, yourPkmn, oppPkmn, yourDmg, oppDmg, damageHandler, timeDelay, pkmnSwitch = false, yourPkmnImg, oppPkmnImg, yourTypeText, yourCritText, oppTypeText, oppCritText) {
+export async function attackHandler (attackOrder, yourPkmn, oppPkmn, yourDmg, oppDmg, damageHandler, timeDelay, pkmnSwitch = false, yourPkmnImg, oppPkmnImg, yourTypeText, yourCritText, oppTypeText, oppCritText, yourMove, oppMove, battleText, setBattleText) {
     if (attackOrder[0] === 'player') {
         if (yourPkmn['currentHp'] >= 1) {
+            addBattleText(`${capFirstLetter(yourPkmn['name'])} used Attack: ${yourMove}`, battleText, setBattleText)
             yourPkmnImg.classList.add('attack-player')
             damageHandler('opp', yourDmg, pkmnSwitch);
             if (yourTypeText) {
                 console.log(yourTypeText);
+                addBattleText(yourTypeText, battleText, setBattleText)
             }
             if (yourCritText) {
                 console.log(yourCritText);
+                addBattleText(yourCritText, battleText, setBattleText)
             }
         }
     } if (attackOrder[0] === 'opp') {
         if (oppPkmn['currentHp'] >= 1) {
+            addBattleText(`The opposing ${capFirstLetter(oppPkmn['name'])} used Attack: ${oppMove}`, battleText, setBattleText)
             oppPkmnImg.classList.add('attack-opp')
             damageHandler('player', oppDmg, pkmnSwitch);
             if (oppTypeText) {
                 console.log(oppTypeText);
+                addBattleText(oppTypeText, battleText, setBattleText)
             }
             if (oppCritText) {
                 console.log(oppCritText);
+                addBattleText(oppCritText, battleText, setBattleText)
             }
         }
     }
@@ -153,24 +160,30 @@ export async function attackHandler (attackOrder, yourPkmn, oppPkmn, yourDmg, op
 
     if (attackOrder[1] === 'player') {
         if (yourPkmn['currentHp'] >= 1) {
+            addBattleText(`${capFirstLetter(yourPkmn['name'])} used Attack: ${yourMove}`, battleText, setBattleText)
             yourPkmnImg.classList.add('attack-player');
             damageHandler('opp', yourDmg);
             if (yourTypeText) {
                 console.log(yourTypeText);
+                addBattleText(yourTypeText, battleText, setBattleText)
             }
             if (yourCritText) {
                 console.log(yourCritText);
+                addBattleText(yourCritText, battleText, setBattleText)
             }
         }
     } if (attackOrder[1] === 'opp') {
         if (oppPkmn['currentHp'] >= 1) {
+            addBattleText(`The opposing ${capFirstLetter(oppPkmn['name'])} used Attack: ${oppMove}`, battleText, setBattleText)
             oppPkmnImg.classList.add('attack-opp');
             damageHandler('player', oppDmg);
             if (oppTypeText) {
                 console.log(oppTypeText);
+                addBattleText(oppTypeText, battleText, setBattleText)
             }
             if (oppCritText) {
                 console.log(oppCritText);
+                addBattleText(oppCritText, battleText, setBattleText)
             }
         }
     }
@@ -207,6 +220,12 @@ export function handleTrainerMoves(pkmnArr) {
     }
 
     return pkmnParty;
+}
+
+export function addBattleText(text, battleText, setBattleText) {
+    const btCopy = [...battleText];
+    btCopy.unshift(text);
+    setBattleText(btCopy);
 }
 
 export function aiRandom(moves) {

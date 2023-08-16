@@ -1,0 +1,60 @@
+.grass {
+    background: linear-gradient(to bottom, rgb(98,188,90), rgb(48, 138, 40));
+}
+.grass:hover {
+    background: rgb(148,238,140);
+}
+.water {
+    background: linear-gradient(to bottom, rgb(80,144,213), rgb(30, 94, 163));  
+}
+.water:hover {
+    background: rgb(130,194,263);
+}
+.fire {
+    background: linear-gradient(to bottom, rgb(255,157,85), rgb(205, 107, 35));  
+}
+.fire:hover {
+    background: rgb(255,207,135);
+}
+.poison {
+    background: linear-gradient(to bottom, rgb(170,108,200), rgb(120, 58, 150));  
+}
+.poison:hover {
+    background: rgb(220,158,250);
+}
+.rock {
+    background: linear-gradient(to bottom, rgb(198,183,140), rgb(148, 133, 90));  
+}
+.rock:hover {
+    background: rgb(248, 233, 190);
+}
+.ground {
+    background: linear-gradient(to bottom, rgb(217,121,69), rgb(167,71,19));  
+}
+.ground:hover {
+    background: rgb(255, 171, 119);
+}
+.fairy {
+    background: linear-gradient(to bottom, rgb(236,142,230), rgb(186,92,180));  
+}
+.fairy:hover {
+    background: rgb(255, 192, 255);
+}
+.steel {
+    background: linear-gradient(to bottom, rgb(91,143,162), rgb(41,93,112));  
+}
+.steel:hover {
+    background: rgb(141,193,212);
+}
+.electric {
+    background: linear-gradient(to bottom, rgb(244,210,59), rgb(194,160,9));  
+}
+.electric:hover {
+    background: rgb(255,255,59);
+}
+.normal {
+    background: linear-gradient(to bottom, rgb(146,157,162), rgb(96,107,112));  
+}
+.normal:hover {
+    background: rgb(196, 207, 212);
+}
