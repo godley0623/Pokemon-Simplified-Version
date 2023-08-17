@@ -1,9 +1,9 @@
-//import _ from 'lodash';
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { setPageBackground, capFirstLetter, sleep } from '../controller/controller'
 import { damageCalc, speedCheck, getRandomMove, attackHandler, faintHandler, fullHealParty, handleTrainerMoves, addBattleText, aiRandom, aiWeakness, lostCheck } from '../controller/pkmnBattleController';
-import { addMove } from '../controller/pkmnDataBaseController'
+import { addMove } from '../controller/pkmnDataBaseController';
+import { setAudio, stopAudio } from '../controller/audioController';
 import '../styles/battlePage.css';
 import '../styles/type.css';
 import moveJson from '../data/moves.json';
@@ -17,6 +17,8 @@ let canSwitch = true;
 let trainerPkmnParty = [];
 let trainerPkmnFainted = [];
 let battleTextArr = [];
+
+let bgm;
 
 export default function BattlePage() {    
     setPageBackground('');
@@ -66,6 +68,9 @@ export default function BattlePage() {
             wildPkmn = addMove(wildPkmn, 'random');
             setOppPkmn(wildPkmn);
             localStorage.removeItem('PSV: wild-pkmn');
+            
+            bgm = setAudio('wild');
+            bgm.play();
         }
 
         if (!localStorage.getItem('PSV: trainer') && param === 'trainer') {
@@ -78,7 +83,6 @@ export default function BattlePage() {
             setOppPkmn(trainerPkmnParty[0]);
             let bt = `${trainerObj.trainerClass} ${trainerObj.name} sent out ${capFirstLetter(trainerPkmnParty[0].name)}`
             addBattleText(bt, battleTextArr, setBattleText)
-
             localStorage.removeItem('PSV: trainer');
         }
     }, [])
@@ -184,6 +188,7 @@ export default function BattlePage() {
     }, [gameState])
 
     function handleRun() {
+        stopAudio(bgm)
         navigate('/play')
     }
 
