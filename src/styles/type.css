@@ -58,3 +58,51 @@
 .normal:hover {
     background: rgb(196, 207, 212);
 }
+.ice {
+    background: linear-gradient(to bottom, rgb(115,206,192), rgb(65,156,142));  
+}
+.ice:hover {
+    background: rgb(165, 255, 242);
+}
+.bug {
+    background: linear-gradient(to bottom, rgb(145,194,45), rgb(95, 144, 0));  
+}
+.bug:hover {
+    background: rgb(195, 244, 95);
+}
+.fighting {
+    background: linear-gradient(to bottom, rgb(206,66,106), rgb(156, 16, 56));  
+}
+.fighting:hover {
+    background: rgb(255, 116, 156);
+}
+.psychic {
+    background: linear-gradient(to bottom, rgb(250,113,120), rgb(200,63,70));  
+}
+.psychic:hover {
+    background: rgb(255, 163, 170);
+}
+.dark {
+    background: linear-gradient(to bottom, rgb(90,84,101), rgb(40,34,51));  
+}
+.dark:hover {
+    background: rgb(140,134,151);
+}
+.dragon {
+    background: linear-gradient(to bottom, rgb(9,109,195), rgb(0, 59, 145));  
+}
+.dragon:hover {
+    background: rgb(59, 159, 245);
+}
+.ghost {
+    background: linear-gradient(to bottom, rgb(82,105,173), rgb(32, 55, 123));  
+}
+.ghost:hover {
+    background: rgb(132, 155, 223);
+}
+.flying {
+    background: linear-gradient(to bottom, rgb(144,168,222), rgb(94, 118, 172));  
+}
+.flying:hover {
+    background: rgb(194, 218, 255);
+}
