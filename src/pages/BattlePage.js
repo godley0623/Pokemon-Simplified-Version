@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { setPageBackground, capFirstLetter, sleep } from '../controller/controller'
-import { damageCalc, speedCheck, getRandomMove, attackHandler, faintHandler, fullHealParty, handleTrainerMoves, addBattleText, aiRandom, aiWeakness } from '../controller/pkmnBattleController';
+import { damageCalc, speedCheck, getRandomMove, attackHandler, faintHandler, fullHealParty, handleTrainerMoves, addBattleText, aiRandom, aiWeakness, lostCheck } from '../controller/pkmnBattleController';
 import { addMove } from '../controller/pkmnDataBaseController'
 import '../styles/battlePage.css';
 import '../styles/type.css';
@@ -34,6 +34,7 @@ export default function BattlePage() {
     const [yourFillColor, setYourFillColor] = useState('rgb(2,203,88)');
     const [oppFillColor, setOppFillColor] = useState('rgb(2,203,88)');
     const [battleText, setBattleText] = useState([]);
+    const [btTracker, setBtTracker] = useState(0);
     const [gameState, setGameState] = useState('');
 
     const yourPkmnImg = useRef(null);
@@ -138,7 +139,7 @@ export default function BattlePage() {
         if (oppHp[1] === 0 && param !== 'wild') {
             setTimeout(() => {
                 let bt = `The opposing ${capFirstLetter(trainerPkmnParty[0].name)} fainted`
-                addBattleText(bt, battleTextArr, setBattleText)
+                addBattleText(bt, battleTextArr, setBtTracker)
                 const faintedPkmn = trainerPkmnParty.shift()
                 trainerPkmnFainted.push(faintedPkmn)
 
@@ -146,21 +147,37 @@ export default function BattlePage() {
                     setOppPkmn(trainerPkmnParty[0])
                     setOppHp([trainerPkmnParty[0].hp, trainerPkmnParty[0].currentHp])
                     let bt = `${trainer.trainerClass} ${trainer.name} sent out ${capFirstLetter(trainerPkmnParty[0].name)}`
-                    addBattleText(bt, battleTextArr, setBattleText)
+                    addBattleText(bt, battleTextArr, setBtTracker)
                 }else {
                     //Handle Win State
                     let bt = `${trainer.trainerClass} ${trainer.name} is defeated`
                     setGameState('Win')
-                    addBattleText(bt, battleTextArr, setBattleText)
+                    addBattleText(bt, battleTextArr, setBtTracker)
                 }
             }, 2000)
         }
     }, [oppHp])
 
     useEffect(() => {
+        if (yourHp[1] === 0 && param !== 'wild') {
+            setTimeout(() => {
+                let bt = `${capFirstLetter(pkmnParty[0].name)} fainted`
+                addBattleText(bt, battleTextArr, setBtTracker)
+
+                if (lostCheck(pkmnParty)) {
+                    let bt = `You're out of usable pokemon`
+                    setGameState('Lose')
+                    addBattleText(bt, battleTextArr, setBtTracker)
+                }
+            }, 2000)
+        }
+    }, [yourHp])
+
+    useEffect(() => {
         battleTextRef.current.scrollTop = battleTextRef.current.scrollHeight;
         setBattleText(battleTextArr);
-    }, [battleTextArr.length])
+        console.log('testing battle text')
+    }, [btTracker])
 
     useEffect(() => {
         console.log(gameState)
@@ -184,11 +201,11 @@ export default function BattlePage() {
                 }
             } else {
                 console.log('You need to defeat the pokemon before you can catch it.')
-                addBattleText('You need to defeat the pokemon before you can catch it.', battleTextArr, setBattleText)
+                addBattleText('You need to defeat the pokemon before you can catch it.', battleTextArr, setBtTracker)
             }
         } else {
             console.log("You can't catch a trainer's Pokemon.")
-            addBattleText("You can't catch a trainer's Pokemon.", battleTextArr, setBattleText)
+            addBattleText("You can't catch a trainer's Pokemon.", battleTextArr, setBtTracker)
         }
     }
 
@@ -252,7 +269,7 @@ export default function BattlePage() {
         const yourDmg = damageCalc(pkmnParty[0], moveJson[yourMove], oppPkmn);
         const oppDmg = damageCalc(oppPkmn, moveJson[oppMove], pkmnParty[0]);
         
-        attackHandler(attackOrder, pkmnParty[0], oppPkmn, yourDmg[0], oppDmg[0], damageHandler, 2000, false, currentPlayer, currentOpp, yourDmg[1], yourDmg[2], oppDmg[1], oppDmg[2], yourMove, oppMove, battleTextArr, setBattleText);
+        attackHandler(attackOrder, pkmnParty[0], oppPkmn, yourDmg[0], oppDmg[0], damageHandler, 2000, false, currentPlayer, currentOpp, yourDmg[1], yourDmg[2], oppDmg[1], oppDmg[2], yourMove, oppMove, battleTextArr, setBtTracker);
 
         await sleep(3000);
         canAttack = true;
@@ -274,13 +291,16 @@ export default function BattlePage() {
         const index1 = 0;
         const index2 = Number(e.target.className);
         const leadPkmnHp = pkmnParty[0]['currentHp'];
+        console.log(pkmnParty)
 
-        if (pkmnParty[index2]['currentHp'] <= 0) {
-            console.log("You can't switch to a fainted Pokemon.")
-            addBattleText("You can't switch to a fainted Pokemon.", battleTextArr, setBattleText)
-            canAttack = true;
-            canSwitch = true;
-            return false;
+        if (pkmnParty[index2]) {
+            if (pkmnParty[index2]['currentHp'] <= 0) {
+                console.log("You can't switch to a fainted Pokemon.")
+                addBattleText("You can't switch to a fainted Pokemon.", battleTextArr, setBtTracker)
+                canAttack = true;
+                canSwitch = true;
+                return false;
+            }
         }
 
         if (index1 < 0 || index1 >= pkmnParty.length || index2 < 0 || index2 >= pkmnParty.length) {
@@ -305,7 +325,7 @@ export default function BattlePage() {
             const oppMove = getRandomMove(oppPkmn['moves'])
             const oppDmg = damageCalc(oppPkmn, moveJson[oppMove], pkmnParty[index2]);
             
-            attackHandler(['opp', 'none'], pkmnParty[0], oppPkmn, 0, oppDmg[0], damageHandler, 0, true, currentPlayer, currentOpp, '', '', oppDmg[1], oppDmg[2], '', oppMove, battleTextArr, setBattleText);
+            attackHandler(['opp', 'none'], pkmnParty[0], oppPkmn, 0, oppDmg[0], damageHandler, 0, true, currentPlayer, currentOpp, '', '', oppDmg[1], oppDmg[2], '', oppMove, battleTextArr, setBtTracker);
             switchTime = 1000;
         }
 

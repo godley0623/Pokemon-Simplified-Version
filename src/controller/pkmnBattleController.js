@@ -213,13 +213,18 @@ export function handleTrainerMoves(pkmnArr) {
     return pkmnParty;
 }
 
-export function addBattleText(text, battleText, setBattleText) {
-    // const btCopy = [...battleText];
-    // btCopy.unshift(text);
-    // setBattleText(btCopy);
+export function addBattleText(text, battleTextArr, setBtTracker) {
+    battleTextArr.push(text)
+    setBtTracker((prev) => prev+1)
+}
 
-    battleText.push(text);
-    setBattleText(battleText);
+export function lostCheck(pkmnParty) {
+    for (let i=0; i<pkmnParty.length; i++) {
+        console.log(pkmnParty[0].currentHp)
+        if (pkmnParty[i].currentHp > 0) return false
+    }
+    
+    return true
 }
 
 export function aiRandom(moves) {

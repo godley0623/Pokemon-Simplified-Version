@@ -5,7 +5,6 @@ import { setPageBackground } from '../controller/controller'
 import { getPkmnParty, setWildPkmn, setTrainer } from '../controller/pkmnDataBaseController'
 import PokemonPartyFooter from '../components/PokemonPartyFooter'
 import BattleOptions from '../components/BattleOptions'
-
 import '../styles/playPage.css'
 
 export default function PlayPage() {

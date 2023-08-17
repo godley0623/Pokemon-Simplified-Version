@@ -5,7 +5,8 @@ import { allPkmn, addPkmnToParty } from '../controller/pkmnDataBaseController'
 import { addMove } from '../controller/pkmnDataBaseController'
 
 export default function StarterPokemon(props) {
-  let pokemon = allPkmn[props.name];
+  const allPkmnCopy = JSON.parse(JSON.stringify(allPkmn));
+  let pokemon = allPkmnCopy[props.name];
   pokemon = addMove(pokemon, 'Normal');
   const navigate = useNavigate()
   function handlePkmnClick() {
