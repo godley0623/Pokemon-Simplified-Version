@@ -140,10 +140,13 @@
     background: white;
 
     overflow: auto;
+    scroll-behavior: smooth;
 }
 .battle-text {
     color: black;
     text-align: start;
+    margin-left: 2.5%;
+    margin-top: 1%;
 }
 
 

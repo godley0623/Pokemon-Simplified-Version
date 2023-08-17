@@ -14,8 +14,9 @@ import pokeball from '../assets/pokeball.png';
 let canAttack = true;
 let canSwitch = true;
 
-let trainerPkmnParty;
+let trainerPkmnParty = [];
 let trainerPkmnFainted = [];
+let battleTextArr = [];
 
 export default function BattlePage() {    
     setPageBackground('');
@@ -33,9 +34,11 @@ export default function BattlePage() {
     const [yourFillColor, setYourFillColor] = useState('rgb(2,203,88)');
     const [oppFillColor, setOppFillColor] = useState('rgb(2,203,88)');
     const [battleText, setBattleText] = useState([]);
+    const [gameState, setGameState] = useState('');
 
     const yourPkmnImg = useRef(null);
     const oppPkmnImg = useRef(null);
+    const battleTextRef = useRef(null);
 
     const bgStyle = {
         backgroundImage: `url(${grassBg})`,
@@ -48,6 +51,7 @@ export default function BattlePage() {
     }, [oppPkmnImg])
 
     useEffect(() => {
+        battleTextArr = []
         if (param !== 'wild' && param !== 'trainer') navigate('/play')
 
         const lsParty = JSON.parse(localStorage.getItem('PSV: pkmn-party'));
@@ -71,8 +75,8 @@ export default function BattlePage() {
 
             setTrainer(trainerObj);
             setOppPkmn(trainerPkmnParty[0]);
-            //let bt = `${trainerObj.trainerClass} ${trainerObj.name} sent out ${capFirstLetter(trainerPkmnParty[0].name)}`
-            //addBattleText(bt, battleText, setBattleText)
+            let bt = `${trainerObj.trainerClass} ${trainerObj.name} sent out ${capFirstLetter(trainerPkmnParty[0].name)}`
+            addBattleText(bt, battleTextArr, setBattleText)
 
             localStorage.removeItem('PSV: trainer');
         }
@@ -133,22 +137,34 @@ export default function BattlePage() {
     useEffect(() => {
         if (oppHp[1] === 0 && param !== 'wild') {
             setTimeout(() => {
-                // = `The opposing ${capFirstLetter(trainerPkmnParty[0].name)} fainted`
-                //addBattleText(bt, battleText, setBattleText)
+                let bt = `The opposing ${capFirstLetter(trainerPkmnParty[0].name)} fainted`
+                addBattleText(bt, battleTextArr, setBattleText)
                 const faintedPkmn = trainerPkmnParty.shift()
                 trainerPkmnFainted.push(faintedPkmn)
 
                 if (trainerPkmnParty.length > 0) {
                     setOppPkmn(trainerPkmnParty[0])
                     setOppHp([trainerPkmnParty[0].hp, trainerPkmnParty[0].currentHp])
-                    //let bt = `${trainer.trainerClass} ${trainer.name} sent out ${capFirstLetter(trainerPkmnParty[0].name)}`
-                    //addBattleText(bt, battleText, setBattleText)
+                    let bt = `${trainer.trainerClass} ${trainer.name} sent out ${capFirstLetter(trainerPkmnParty[0].name)}`
+                    addBattleText(bt, battleTextArr, setBattleText)
                 }else {
                     //Handle Win State
+                    let bt = `${trainer.trainerClass} ${trainer.name} is defeated`
+                    setGameState('Win')
+                    addBattleText(bt, battleTextArr, setBattleText)
                 }
             }, 2000)
         }
     }, [oppHp])
+
+    useEffect(() => {
+        battleTextRef.current.scrollTop = battleTextRef.current.scrollHeight;
+        setBattleText(battleTextArr);
+    }, [battleTextArr.length])
+
+    useEffect(() => {
+        console.log(gameState)
+    }, [gameState])
 
     function handleRun() {
         navigate('/play')
@@ -168,11 +184,11 @@ export default function BattlePage() {
                 }
             } else {
                 console.log('You need to defeat the pokemon before you can catch it.')
-                //addBattleText('You need to defeat the pokemon before you can catch it.', battleText, setBattleText)
+                addBattleText('You need to defeat the pokemon before you can catch it.', battleTextArr, setBattleText)
             }
         } else {
             console.log("You can't catch a trainer's Pokemon.")
-            //addBattleText("You can't catch a trainer's Pokemon.", battleText, setBattleText)
+            addBattleText("You can't catch a trainer's Pokemon.", battleTextArr, setBattleText)
         }
     }
 
@@ -236,7 +252,7 @@ export default function BattlePage() {
         const yourDmg = damageCalc(pkmnParty[0], moveJson[yourMove], oppPkmn);
         const oppDmg = damageCalc(oppPkmn, moveJson[oppMove], pkmnParty[0]);
         
-        attackHandler(attackOrder, pkmnParty[0], oppPkmn, yourDmg[0], oppDmg[0], damageHandler, 2000, false, currentPlayer, currentOpp, yourDmg[1], yourDmg[2], oppDmg[1], oppDmg[2], yourMove, oppMove, battleText, setBattleText);
+        attackHandler(attackOrder, pkmnParty[0], oppPkmn, yourDmg[0], oppDmg[0], damageHandler, 2000, false, currentPlayer, currentOpp, yourDmg[1], yourDmg[2], oppDmg[1], oppDmg[2], yourMove, oppMove, battleTextArr, setBattleText);
 
         await sleep(3000);
         canAttack = true;
@@ -261,7 +277,7 @@ export default function BattlePage() {
 
         if (pkmnParty[index2]['currentHp'] <= 0) {
             console.log("You can't switch to a fainted Pokemon.")
-            //addBattleText("You can't switch to a fainted Pokemon.", battleText, setBattleText)
+            addBattleText("You can't switch to a fainted Pokemon.", battleTextArr, setBattleText)
             canAttack = true;
             canSwitch = true;
             return false;
@@ -289,7 +305,7 @@ export default function BattlePage() {
             const oppMove = getRandomMove(oppPkmn['moves'])
             const oppDmg = damageCalc(oppPkmn, moveJson[oppMove], pkmnParty[index2]);
             
-            attackHandler(['opp', 'none'], pkmnParty[0], oppPkmn, 0, oppDmg[0], damageHandler, 0, true, currentPlayer, currentOpp, '', '', oppDmg[1], oppDmg[2], '', oppMove, battleText, setBattleText);
+            attackHandler(['opp', 'none'], pkmnParty[0], oppPkmn, 0, oppDmg[0], damageHandler, 0, true, currentPlayer, currentOpp, '', '', oppDmg[1], oppDmg[2], '', oppMove, battleTextArr, setBattleText);
             switchTime = 1000;
         }
 
@@ -370,7 +386,7 @@ export default function BattlePage() {
                     <div onClick={handleRun} className='run-container'>Run</div>
                 </div>
             </div>
-            <div className='battle-message-box'>
+            <div ref={battleTextRef} className='battle-message-box'>
                 {battleText.map((text, key) => (
                     <h4 key={key} className='battle-text'>{text}</h4>
                 ))}

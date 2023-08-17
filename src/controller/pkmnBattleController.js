@@ -214,9 +214,12 @@ export function handleTrainerMoves(pkmnArr) {
 }
 
 export function addBattleText(text, battleText, setBattleText) {
-    const btCopy = [...battleText];
-    btCopy.unshift(text);
-    setBattleText(btCopy);
+    // const btCopy = [...battleText];
+    // btCopy.unshift(text);
+    // setBattleText(btCopy);
+
+    battleText.push(text);
+    setBattleText(battleText);
 }
 
 export function aiRandom(moves) {
