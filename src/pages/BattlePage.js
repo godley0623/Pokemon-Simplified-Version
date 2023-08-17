@@ -71,8 +71,8 @@ export default function BattlePage() {
 
             setTrainer(trainerObj);
             setOppPkmn(trainerPkmnParty[0]);
-            let bt = `${trainerObj.trainerClass} ${trainerObj.name} sent out ${capFirstLetter(trainerPkmnParty[0].name)}`
-            addBattleText(bt, battleText, setBattleText)
+            //let bt = `${trainerObj.trainerClass} ${trainerObj.name} sent out ${capFirstLetter(trainerPkmnParty[0].name)}`
+            //addBattleText(bt, battleText, setBattleText)
 
             localStorage.removeItem('PSV: trainer');
         }
@@ -128,25 +128,27 @@ export default function BattlePage() {
         })
         
         faintHandler(oppPkmnImg, oppHp, 750);
+    }, [oppHp, oppFillColor])
 
+    useEffect(() => {
         if (oppHp[1] === 0 && param !== 'wild') {
             setTimeout(() => {
-                let bt = `The opposing ${capFirstLetter(trainerPkmnParty[0].name)} fainted`
-                addBattleText(bt, battleText, setBattleText)
+                // = `The opposing ${capFirstLetter(trainerPkmnParty[0].name)} fainted`
+                //addBattleText(bt, battleText, setBattleText)
                 const faintedPkmn = trainerPkmnParty.shift()
                 trainerPkmnFainted.push(faintedPkmn)
 
                 if (trainerPkmnParty.length > 0) {
                     setOppPkmn(trainerPkmnParty[0])
-                    let bt = `${trainer.trainerClass} ${trainer.name} sent out ${capFirstLetter(trainerPkmnParty[0].name)}`
-                    addBattleText(bt, battleText, setBattleText)
+                    setOppHp([trainerPkmnParty[0].hp, trainerPkmnParty[0].currentHp])
+                    //let bt = `${trainer.trainerClass} ${trainer.name} sent out ${capFirstLetter(trainerPkmnParty[0].name)}`
+                    //addBattleText(bt, battleText, setBattleText)
                 }else {
                     //Handle Win State
                 }
             }, 2000)
         }
-
-    }, [oppHp, oppFillColor])
+    }, [oppHp])
 
     function handleRun() {
         navigate('/play')
@@ -160,18 +162,17 @@ export default function BattlePage() {
             if (oppHp[1] === 0) {
                 if (partyNum < 6) {
                     pkmnParty.push(oppPkmn);
-                    console.log(pkmnParty);
                     localStorage.setItem('PSV: pkmn-party', JSON.stringify(pkmnParty));
 
                     pokeball.classList.add('hidden');
                 }
             } else {
                 console.log('You need to defeat the pokemon before you can catch it.')
-                addBattleText('You need to defeat the pokemon before you can catch it.', battleText, setBattleText)
+                //addBattleText('You need to defeat the pokemon before you can catch it.', battleText, setBattleText)
             }
         } else {
             console.log("You can't catch a trainer's Pokemon.")
-            addBattleText("You can't catch a trainer's Pokemon.", battleText, setBattleText)
+            //addBattleText("You can't catch a trainer's Pokemon.", battleText, setBattleText)
         }
     }
 
@@ -260,7 +261,7 @@ export default function BattlePage() {
 
         if (pkmnParty[index2]['currentHp'] <= 0) {
             console.log("You can't switch to a fainted Pokemon.")
-            addBattleText("You can't switch to a fainted Pokemon.", battleText, setBattleText)
+            //addBattleText("You can't switch to a fainted Pokemon.", battleText, setBattleText)
             canAttack = true;
             canSwitch = true;
             return false;

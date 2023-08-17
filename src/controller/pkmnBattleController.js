@@ -2,7 +2,6 @@ import { weaknessCheck, setTypeMatchup } from "./pkmnTypesController";
 import { capFirstLetter, sleep, choose } from "./controller";
 import { allPkmn } from "./pkmnDataBaseController";
 import moveJson from "../data/moves.json";
-import { set } from "lodash";
 
 export function fullHealParty(pkmnParty) {
     for (let i=0; i<pkmnParty.length; i++) {
@@ -131,11 +130,9 @@ export async function attackHandler (attackOrder, yourPkmn, oppPkmn, yourDmg, op
             yourPkmnImg.classList.add('attack-player')
             damageHandler('opp', yourDmg, pkmnSwitch);
             if (yourTypeText) {
-                console.log(yourTypeText);
                 addBattleText(yourTypeText, battleText, setBattleText)
             }
             if (yourCritText) {
-                console.log(yourCritText);
                 addBattleText(yourCritText, battleText, setBattleText)
             }
         }
@@ -145,11 +142,9 @@ export async function attackHandler (attackOrder, yourPkmn, oppPkmn, yourDmg, op
             oppPkmnImg.classList.add('attack-opp')
             damageHandler('player', oppDmg, pkmnSwitch);
             if (oppTypeText) {
-                console.log(oppTypeText);
                 addBattleText(oppTypeText, battleText, setBattleText)
             }
             if (oppCritText) {
-                console.log(oppCritText);
                 addBattleText(oppCritText, battleText, setBattleText)
             }
         }
@@ -164,11 +159,9 @@ export async function attackHandler (attackOrder, yourPkmn, oppPkmn, yourDmg, op
             yourPkmnImg.classList.add('attack-player');
             damageHandler('opp', yourDmg);
             if (yourTypeText) {
-                console.log(yourTypeText);
                 addBattleText(yourTypeText, battleText, setBattleText)
             }
             if (yourCritText) {
-                console.log(yourCritText);
                 addBattleText(yourCritText, battleText, setBattleText)
             }
         }
@@ -178,11 +171,9 @@ export async function attackHandler (attackOrder, yourPkmn, oppPkmn, yourDmg, op
             oppPkmnImg.classList.add('attack-opp');
             damageHandler('player', oppDmg);
             if (oppTypeText) {
-                console.log(oppTypeText);
                 addBattleText(oppTypeText, battleText, setBattleText)
             }
             if (oppCritText) {
-                console.log(oppCritText);
                 addBattleText(oppCritText, battleText, setBattleText)
             }
         }
