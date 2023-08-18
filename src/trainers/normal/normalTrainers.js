@@ -4,6 +4,7 @@ import pokefanM from '../../assets/trainerSprites/Spr_B2W2_Pokéfan_M.png'
 import backpackerM from '../../assets/trainerSprites/Spr_B2W2_Backpacker_M.png'
 import backpackerF from '../../assets/trainerSprites/Spr_B2W2_Backpacker_F.png'
 import clerkF from '../../assets/trainerSprites/Spr_B2W2_Clerk_F.png'
+import breederM from '../../assets/trainerSprites/Spr_B2W2_Pokémon_Breeder_M.png'
 
 export const youngsterJoey2 = new Trainer('Youngster', 'Joey', 'Normal', youngster, 'trainer', [
     {
@@ -68,7 +69,7 @@ export const sei424Larisa = new Trainer('SEI424', 'Larisa', 'Normal', backpacker
     },
     {
         'pokemon': 'mightyena',
-        'moves': ['Dark', 'Psychic', 'Dragon'],
+        'moves': ['Dark', 'Psychic', 'Flying'],
         'items': [],
         'ai': ['weakness']
     },
@@ -79,8 +80,8 @@ export const sei424Larisa = new Trainer('SEI424', 'Larisa', 'Normal', backpacker
         'ai': ['weakness']
     },
     {
-        'pokemon': 'ursaring',
-        'moves': ['Normal+', 'Fighting', 'Ground'],
+        'pokemon': 'typhlosion',
+        'moves': ['Fire+', 'Flying', 'Ghost'],
         'items': [],
         'ai': ['weakness']
     },
@@ -125,9 +126,37 @@ export const sei424Luke = new Trainer('SEI424', 'Luke', 'Normal', backpackerM, '
     }
 ])
 
+export const sei424Devin = new Trainer('SEI424', 'Devin', 'Normal', breederM, 'sei424', [
+    {
+        'pokemon': 'granbull',
+        'moves': ['Fairy+', 'Fighting', 'Water'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'lucario',
+        'moves': ['Fighting+', 'Steel', 'Psychic'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'houndoom',
+        'moves': ['Fire+', 'Dark+', 'Fighting', 'Flying'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'arcanine',
+        'moves': ['Fire+', 'Fighting+', 'Rock+', 'Dragon+'],
+        'items': [],
+        'ai': ['weakness']
+    }
+])
+
 export const normalTrainers = [
     youngsterJoey2,
     sei424Jamari,
     sei424Larisa,
-    sei424Luke
+    sei424Luke,
+    sei424Devin
 ]

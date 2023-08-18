@@ -2,6 +2,7 @@ import genOne from '../data/genone_pkmn.json'
 import genTwo from '../data/gentwo_pkmn.json'
 import genThree from '../data/genthree_pkmn.json'
 import genFour from '../data/genfour_pkmn.json'
+import genFive from '../data/genfive_pkmn.json'
 import { getRandomNumber, choose } from './controller'
 import { easyTrainers } from '../trainers/easy/easyTrainers'
 import { normalTrainers } from '../trainers/normal/normalTrainers'
@@ -9,7 +10,7 @@ import { hardTrainers } from '../trainers/hard/hardTrainers'
 
 const types = ["Fire", "Water", "Grass", "Electric", "Normal", "Flying", "Bug", "Poison", "Rock", "Ground", "Fighting", "Psychic", "Ghost", "Dark", "Steel", "Fairy", "Ice", "Dragon"];
 
-export const allPkmn = { ...genOne, ...genTwo, ...genThree, ...genFour};
+export const allPkmn = { ...genOne, ...genTwo, ...genThree, ...genFour, ...genFive};
 
 let low = [];
 let mid = [];

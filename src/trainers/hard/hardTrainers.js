@@ -7,6 +7,7 @@ import clerkF from '../../assets/trainerSprites/Spr_B2W2_Clerk_F.png'
 import veteranF from '../../assets/trainerSprites/Spr_B2W2_Veteran_F.png'
 import cyclistM from '../../assets/trainerSprites/Spr_B2W2_Cyclist_M.png'
 import hiker from '../../assets/trainerSprites/Spr_B2W2_Hiker.png'
+import richboy from '../../assets/trainerSprites/Spr_B2W2_Rich_Boy.png'
 
 export const sei424Cicely = new Trainer('SEI424', 'Cicely', 'Hard', veteranF, 'sei424', [
     {
@@ -125,8 +126,48 @@ export const sei424Shalom = new Trainer('SEI424', 'Shalom', 'Hard', hiker, 'sei4
     }
 ])
 
+export const sei424Aleks = new Trainer('SEI424', 'Aleks', 'Hard', richboy, 'sei424', [
+    {
+        'pokemon': 'persian',
+        'moves': ['Normal+', 'Ice+', 'Rock', 'Dark'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'kricketune',
+        'moves': ['Bug+', 'Ice+', 'Ground', 'Poison'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'glalie',
+        'moves': ['Ice+', 'Steel+', 'Ghost', 'Water'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'chandelure',
+        'moves': ['Ghost+', 'Fire+', 'Ice', 'Bug'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'braviary',
+        'moves': ['Normal+', 'Flying+', 'Ice+', 'Ground'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'serperior',
+        'moves': ['Grass+', 'Ice+', 'Rock+', 'Ground+'],
+        'items': [],
+        'ai': ['weakness']
+    }
+])
+
 export const hardTrainers = [
     sei424Cicely,
     sei424Matt,
-    sei424Shalom
+    sei424Shalom,
+    sei424Aleks
 ]
