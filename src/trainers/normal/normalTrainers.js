@@ -2,6 +2,7 @@ import { Trainer } from "../trainer"
 import youngster from '../../assets/trainerSprites/Spr_B2W2_Youngster.png'
 import pokefanM from '../../assets/trainerSprites/Spr_B2W2_Pokéfan_M.png'
 import backpackerF from '../../assets/trainerSprites/Spr_B2W2_Backpacker_F.png'
+import clerkF from '../../assets/trainerSprites/Spr_B2W2_Clerk_F.png'
 
 export const youngsterJoey2 = new Trainer('Youngster', 'Joey', 'Normal', youngster, 'trainer', [
     {
