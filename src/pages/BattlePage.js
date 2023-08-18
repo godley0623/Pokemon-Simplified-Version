@@ -84,6 +84,10 @@ export default function BattlePage() {
             let bt = `${trainerObj.trainerClass} ${trainerObj.name} sent out ${capFirstLetter(trainerPkmnParty[0].name)}`
             addBattleText(bt, battleTextArr, setBattleText)
             localStorage.removeItem('PSV: trainer');
+
+            bgm = setAudio(trainerObj.bgm);
+            console.log(bgm)
+            bgm.play();
         }
     }, [])
 

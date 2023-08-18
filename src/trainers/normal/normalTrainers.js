@@ -1,7 +1,7 @@
 import { Trainer } from "../trainer"
 import youngster from '../../assets/trainerSprites/Spr_B2W2_Youngster.png'
 
-export const youngsterJoey2 = new Trainer('Youngster', 'Joey', 'Normal', youngster, [
+export const youngsterJoey2 = new Trainer('Youngster', 'Joey', 'Normal', youngster, 'trainer', [
     {
         'pokemon': 'rattata',
         'moves': ['Normal', 'Grass'],

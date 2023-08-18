@@ -2,7 +2,7 @@ import wild from '../assets/audio/wild.mp3'
 import trainer from '../assets/audio/trainer.mp3'
 import kantoGL from '../assets/audio/kantoGL.mp3'
 
-const audioObj = {
+export const audioObj = {
     'wild': wild,
     'trainer': trainer,
     'kantoGL': kantoGL
