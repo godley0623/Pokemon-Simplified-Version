@@ -6,6 +6,7 @@ import backpackerF from '../../assets/trainerSprites/Spr_B2W2_Backpacker_F.png'
 import clerkF from '../../assets/trainerSprites/Spr_B2W2_Clerk_F.png'
 import blackbelt from '../../assets/trainerSprites/Spr_B2W2_Black_Belt.png'
 import gentleman from '../../assets/trainerSprites/Spr_B2W2_Gentleman.png'
+import worker from '../../assets/trainerSprites/Spr_B2W2_Worker.png'
 
 export const youngsterJoey = new Trainer('Youngster', 'Joey', 'Easy', youngster, 'trainer', [
     {
@@ -112,10 +113,32 @@ export const sei424Elijah = new Trainer('SEI424', 'Elijah', 'Easy', blackbelt, '
     }
 ])
 
+export const sei424Darious = new Trainer('SEI424', 'Darious', 'Easy', worker, 'sei424', [
+    {
+        'pokemon': 'voltorb',
+        'moves': ['Electric', 'Fire'],
+        'items': [],
+        'ai': ['random']
+    },
+    {
+        'pokemon': 'klang',
+        'moves': ['Steel', 'Poison'],
+        'items': [],
+        'ai': ['random']
+    },
+    {
+        'pokemon': 'scrafty',
+        'moves': ['Fighting+', 'Dark+'],
+        'items': [],
+        'ai': ['random']
+    }
+])
+
 export const easyTrainers = [
     youngsterJoey,
     sei424Jaime,
     sei424Jude,
     sei424Nafisa,
-    sei424Elijah
+    sei424Elijah,
+    sei424Darious
 ]

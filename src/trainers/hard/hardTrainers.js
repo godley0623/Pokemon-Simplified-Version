@@ -4,6 +4,7 @@ import pokefanM from '../../assets/trainerSprites/Spr_B2W2_Pokéfan_M.png'
 import backpackerM from '../../assets/trainerSprites/Spr_B2W2_Backpacker_M.png'
 import backpackerF from '../../assets/trainerSprites/Spr_B2W2_Backpacker_F.png'
 import clerkF from '../../assets/trainerSprites/Spr_B2W2_Clerk_F.png'
+import veteranM from '../../assets/trainerSprites/Spr_B2W2_Veteran_M.png'
 import veteranF from '../../assets/trainerSprites/Spr_B2W2_Veteran_F.png'
 import cyclistM from '../../assets/trainerSprites/Spr_B2W2_Cyclist_M.png'
 import hiker from '../../assets/trainerSprites/Spr_B2W2_Hiker.png'
@@ -158,8 +159,47 @@ export const sei424Aleks = new Trainer('SEI424', 'Aleks', 'Hard', richboy, 'sei4
         'ai': ['weakness']
     },
     {
-        'pokemon': 'serperior',
-        'moves': ['Grass+', 'Ice+', 'Rock+', 'Ground+'],
+        'pokemon': 'blastoise',
+        'moves': ['Water+', 'Ice+', 'Rock+', 'Ground+'],
+        'items': [],
+        'ai': ['weakness']
+    }
+])
+
+export const sei424Michael = new Trainer('SEI424', 'Michael', 'Hard', veteranM, 'sei424', [
+    {
+        'pokemon': 'girafarig',
+        'moves': ['Normal+', 'Psychic+', 'Fire', 'Dark'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'dodrio',
+        'moves': ['Normal+', 'Flying+', 'Psychic', 'Ground'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'quagsire',
+        'moves': ['Water+', 'Ground+', 'Psychic', 'Bug'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'magmortar',
+        'moves': ['Fire+', 'Psychic+', 'Bug', 'Electric'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'porygon-z',
+        'moves': ['Normal+', 'Psychic+', 'Bug+', 'Fire'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'metagross',
+        'moves': ['Steel+', 'Psychic+', 'Fighting+', 'Water+'],
         'items': [],
         'ai': ['weakness']
     }
@@ -169,5 +209,6 @@ export const hardTrainers = [
     sei424Cicely,
     sei424Matt,
     sei424Shalom,
-    sei424Aleks
+    sei424Aleks,
+    sei424Michael
 ]

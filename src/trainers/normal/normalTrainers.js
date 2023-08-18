@@ -5,6 +5,7 @@ import backpackerM from '../../assets/trainerSprites/Spr_B2W2_Backpacker_M.png'
 import backpackerF from '../../assets/trainerSprites/Spr_B2W2_Backpacker_F.png'
 import clerkF from '../../assets/trainerSprites/Spr_B2W2_Clerk_F.png'
 import breederM from '../../assets/trainerSprites/Spr_B2W2_Pokémon_Breeder_M.png'
+import joker from '../../assets/trainerSprites/Spr_B2W2_Harlequin.png'
 
 export const youngsterJoey2 = new Trainer('Youngster', 'Joey', 'Normal', youngster, 'trainer', [
     {
@@ -153,10 +154,38 @@ export const sei424Devin = new Trainer('SEI424', 'Devin', 'Normal', breederM, 's
     }
 ])
 
+export const sei424Grant = new Trainer('SEI424', 'Grant', 'Normal', joker, 'sei424', [
+    {
+        'pokemon': 'mr-mime',
+        'moves': ['Psychic+', 'Fairy', 'Ghost', 'Bug'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'liepard',
+        'moves': ['Dark+', 'Fairy', 'Fire'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'ludicolo',
+        'moves': ['Grass+', 'Water+', 'Ghost', 'Ice'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'gengar',
+        'moves': ['Ghost+', 'Poison+', 'Ice+', 'Fighting+'],
+        'items': [],
+        'ai': ['weakness']
+    }
+])
+
 export const normalTrainers = [
     youngsterJoey2,
     sei424Jamari,
     sei424Larisa,
     sei424Luke,
-    sei424Devin
+    sei424Devin,
+    sei424Grant
 ]
