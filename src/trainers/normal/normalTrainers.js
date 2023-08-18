@@ -1,6 +1,7 @@
 import { Trainer } from "../trainer"
 import youngster from '../../assets/trainerSprites/Spr_B2W2_Youngster.png'
 import pokefanM from '../../assets/trainerSprites/Spr_B2W2_Pokéfan_M.png'
+import backpackerF from '../../assets/trainerSprites/Spr_B2W2_Backpacker_F.png'
 
 export const youngsterJoey2 = new Trainer('Youngster', 'Joey', 'Normal', youngster, 'trainer', [
     {
@@ -56,7 +57,41 @@ export const sei424Jamari = new Trainer('SEI424', 'Jamari', 'Normal', pokefanM, 
     }
 ])
 
+export const sei424Larisa = new Trainer('SEI424', 'Larisa', 'Normal', backpackerF, 'sei424', [
+    {
+        'pokemon': 'smeargle',
+        'moves': ['Normal+', 'Fire+', 'Water+', 'Grass+'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'mightyena',
+        'moves': ['Dark', 'Psychic', 'Dragon'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'pelipper',
+        'moves': ['Flying+', 'Water', 'Fairy'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'ursaring',
+        'moves': ['Normal+', 'Fighting', 'Ground'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'porygon-z',
+        'moves': ['Normal+', 'Ice+', 'Electric+', 'Fire+'],
+        'items': [],
+        'ai': ['weakness']
+    }
+])
+
 export const normalTrainers = [
     youngsterJoey2,
-    sei424Jamari
+    sei424Jamari,
+    sei424Larisa
 ]
