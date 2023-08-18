@@ -518,10 +518,10 @@
             "electric",
             "none"
         ],
-        "hp": 50,
-        "currentHp": 50,
-        "atk": 11,
-        "def": 8,
+        "hp": 40,
+        "currentHp": 40,
+        "atk": 9,
+        "def": 6,
         "spd": 110,
         "sprite": [
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/26.gif",
