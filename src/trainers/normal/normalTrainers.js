@@ -134,8 +134,8 @@ export const sei424Devin = new Trainer('SEI424', 'Devin', 'Normal', breederM, 's
         'ai': ['weakness']
     },
     {
-        'pokemon': 'lucario',
-        'moves': ['Fighting+', 'Steel', 'Psychic'],
+        'pokemon': 'stoutland',
+        'moves': ['Normal+', 'Fighting', 'Grass'],
         'items': [],
         'ai': ['weakness']
     },
