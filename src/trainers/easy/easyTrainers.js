@@ -31,20 +31,20 @@ export const youngsterJoey = new Trainer('Youngster', 'Joey', 'Easy', youngster,
 
 export const sei424Jaime = new Trainer('SEI424', 'Jaime', 'Easy', youngster, 'sei424', [
     {
-        'pokemon': 'cherubi',
-        'moves': ['Grass', 'Rock'],
-        'items': [],
-        'ai': ['random']
-    },
-    {
         'pokemon': 'chatot',
-        'moves': ['Normal', 'Flying', 'Ground'],
+        'moves': ['Normal', 'Flying'],
         'items': [],
         'ai': ['random']
     },
     {
         'pokemon': 'combusken',
-        'moves': ['Fire+', 'Fighting+'],
+        'moves': ['Fire', 'Fighting'],
+        'items': [],
+        'ai': ['random']
+    },
+    {
+        'pokemon': 'sharpedo',
+        'moves': ['Water+', 'Dark+'],
         'items': [],
         'ai': ['random']
     }
