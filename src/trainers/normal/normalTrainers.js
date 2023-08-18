@@ -1,5 +1,6 @@
 import { Trainer } from "../trainer"
 import youngster from '../../assets/trainerSprites/Spr_B2W2_Youngster.png'
+import pokefanM from '../../assets/trainerSprites/Spr_B2W2_Pokéfan_M.png'
 
 export const youngsterJoey2 = new Trainer('Youngster', 'Joey', 'Normal', youngster, 'trainer', [
     {
@@ -28,6 +29,34 @@ export const youngsterJoey2 = new Trainer('Youngster', 'Joey', 'Normal', youngst
     }
 ])
 
+export const sei424Jamari = new Trainer('SEI424', 'Jamari', 'Normal', pokefanM, 'sei424', [
+    {
+        'pokemon': 'makuhita',
+        'moves': ['Fighting', 'Ice', 'Steel'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'croconaw',
+        'moves': ['Water', 'Poison', 'Dark'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'vigoroth',
+        'moves': ['Normal+', 'Fighting', 'Ghost'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'poliwrath',
+        'moves': ['Water+', 'Fighting+', 'Fire', 'Fairy'],
+        'items': [],
+        'ai': ['weakness']
+    }
+])
+
 export const normalTrainers = [
-    youngsterJoey2
+    youngsterJoey2,
+    sei424Jamari
 ]
