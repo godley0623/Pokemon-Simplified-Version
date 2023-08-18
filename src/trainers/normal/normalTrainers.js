@@ -69,7 +69,7 @@ export const sei424Larisa = new Trainer('SEI424', 'Larisa', 'Normal', backpacker
     },
     {
         'pokemon': 'mightyena',
-        'moves': ['Dark', 'Psychic', 'Flying'],
+        'moves': ['Dark+', 'Psychic', 'Flying'],
         'items': [],
         'ai': ['weakness']
     },
