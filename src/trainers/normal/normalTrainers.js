@@ -38,26 +38,26 @@ export const youngsterJoey2 = new Trainer('Youngster', 'Joey', 'Normal', youngst
 
 export const sei424Jamari = new Trainer('SEI424', 'Jamari', 'Normal', pokefanM, 'sei424', [
     {
-        'pokemon': 'makuhita',
-        'moves': ['Fighting', 'Ice', 'Steel'],
+        'pokemon': 'dewott',
+        'moves': ['Water+', 'Ice', 'Fairy'],
         'items': [],
         'ai': ['weakness']
     },
     {
-        'pokemon': 'croconaw',
-        'moves': ['Water', 'Poison', 'Dark'],
+        'pokemon': 'bouffalant',
+        'moves': ['Normal+', 'Fairy', 'Rock'],
         'items': [],
         'ai': ['weakness']
     },
     {
-        'pokemon': 'vigoroth',
-        'moves': ['Normal+', 'Fighting', 'Ghost'],
+        'pokemon': 'kangaskhan',
+        'moves': ['Normal+', 'Fairy', 'Ghost'],
         'items': [],
         'ai': ['weakness']
     },
     {
-        'pokemon': 'poliwrath',
-        'moves': ['Water+', 'Fighting+', 'Fire', 'Fairy'],
+        'pokemon': 'galvantula',
+        'moves': ['Electric+', 'Bug+', 'Ghost+', 'Fire+'],
         'items': [],
         'ai': ['weakness']
     }
