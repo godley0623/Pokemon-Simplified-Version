@@ -28,6 +28,11 @@ export default function PokemonPartyFooter() {
                 </div>
             ))}
         </div>
+        <div className='footer-buttons'>
+            <div className='box'>Box</div>
+            <div className='bag'>Bag</div>
+            <div className='shop'>Shop</div>
+        </div>
     </div>
   )
 }
