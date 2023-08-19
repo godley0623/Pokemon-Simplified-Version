@@ -4,13 +4,64 @@
             "item": "Evolution Stone",
             "type": "consume",
             "price": 1000,
-            "desc": "Evolves your Pokemon to their next stage"
+            "sprite": "name",
+            "desc": "Evolves your Pokemon to their next stage."
         },
         {
             "item": "TM Random",
             "type": "consume",
             "price": 100,
-            "desc": "Gives your Pokemon a random move. With a 10% chance of it being a plus move"
+            "sprite": "name",
+            "desc": "Gives your Pokemon a random move. With a 10% chance of it being a plus move."
+        },
+        {
+            "item": "VS Seeker",
+            "type": "consume",
+            "price": 300,
+            "sprite": "name",
+            "desc": "Challenge a random SEI424 trainer that you haven't defeated already."
+        },
+        {
+            "item": "Leftovers",
+            "type": "hold",
+            "price": 1000,
+            "sprite": "name",
+            "desc": "The holder recovers 1/16 of their max HP at the end of every turn."
+        },
+        {
+            "item": "Sitrus Berry",
+            "type": "hold",
+            "price": 1000,
+            "sprite": "name",
+            "desc": "When the holder's HP goes below half for the first time they recover 1/4 of their max HP."
+        },
+        {
+            "item": "Quick Attack",
+            "type": "move",
+            "price": 300,
+            "sprite": "normal-move.png",
+            "desc": "Changes Attack: Normal to Quick Attack."
+        },
+        {
+            "item": "Aqua Jet",
+            "type": "move",
+            "price": 500,
+            "sprite": "water-move.png",
+            "desc": "If the holder is a Water type; Changes Attack: Water to Aqua Jet."
+        },
+        {
+            "item": "Giga Drain",
+            "type": "move",
+            "price": 1000,
+            "sprite": "grass-move.png",
+            "desc": "If the holder is a Grass type; Changes Attack: Grass to Giga Drain."
+        },
+        {
+            "item": "Shield Bash",
+            "type": "move",
+            "price": 750,
+            "sprite": "normal-move.png",
+            "desc": "Changes Attack: Rock or Steel to Shield Bash."
         }
     ]
 }
