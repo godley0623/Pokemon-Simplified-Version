@@ -2,6 +2,7 @@ import React from 'react'
 import { capFirstLetter } from '../controller/controller'
 import '../styles/statDisplay.css'
 import { pkmnTypes } from '../controller/pkmnTypesController'
+import moveJson from '../data/moves.json'
 
 export default function PkmnStatDisplay(props) {
 
@@ -53,9 +54,16 @@ export default function PkmnStatDisplay(props) {
             <div className='move-container'>
                 Moves
                 <div className='moves'>
-                    {props.pkmn['moves'].map((move, key) => (
-                        <img key={key} src={pkmnTypes[`${move.toLowerCase()}`]} alt='pokemon type'/>
-                    ))}
+                    {props.pkmn['moves'].map((move, key) => {
+                        let glow = ''
+                        if (move.includes('+')) {
+                            glow = 'glow'
+                        }
+
+                        return (
+                            <img className={glow} key={key} src={pkmnTypes[`${moveJson[move]['type']}`]} alt='pokemon type'/>
+                        )
+                    })}
                 </div>
             </div>
             <div className='button-container'>
