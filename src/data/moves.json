@@ -358,5 +358,45 @@
         "priority": 0,
         "strikeNum": 1,
         "effect": []
+    },
+    "Quick Attack": {
+        "type": "normal",
+        "power": 50,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 1,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Giga Drain": {
+        "type": "grass",
+        "power": 80,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": ["Drain"]
+    },
+    "Aqua Jet": {
+        "type": "water",
+        "power": 50,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 1,
+        "strikeNum": 1,
+        "effect": []
+    },
+    "Shield Bash": {
+        "type": "???",
+        "power": 80,
+        "accuracy": 100,
+        "recoil": false,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": ["Atk w/ Def"]
     }
 }
