@@ -9,6 +9,8 @@ import veteranF from '../../assets/trainerSprites/Spr_B2W2_Veteran_F.png'
 import cyclistM from '../../assets/trainerSprites/Spr_B2W2_Cyclist_M.png'
 import hiker from '../../assets/trainerSprites/Spr_B2W2_Hiker.png'
 import richboy from '../../assets/trainerSprites/Spr_B2W2_Rich_Boy.png'
+import musician from '../../assets/trainerSprites/Spr_B2W2_Musician.png'
+import dancer from '../../assets/trainerSprites/Spr_B2W2_Dancer.png'
 
 export const sei424Cicely = new Trainer('SEI424', 'Cicely', 'Hard', veteranF, 'sei424', [
     {
@@ -205,10 +207,90 @@ export const sei424Michael = new Trainer('SEI424', 'Michael', 'Hard', veteranM, 
     }
 ])
 
+export const sei424Leo = new Trainer('SEI424', 'Leo', 'Hard', musician, 'sei424', [
+    {
+        'pokemon': 'archen',
+        'moves': ['Rock+', 'Flying+', 'Electric', 'Ground'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'manectric',
+        'moves': ['Electric+', 'Ice+', 'Ground', 'Fighting'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'exploud',
+        'moves': ['Normal+', 'Electric+', 'Psychic', 'Bug'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'yanmega',
+        'moves': ['Bug+', 'Flying+', 'Electric', 'Water'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'charizard',
+        'moves': ['Fire+', 'Flying+', 'Electric+', 'Ground'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'hydreigon',
+        'moves': ['Dragon+', 'Dark+', 'Poison+', 'Fire+'],
+        'items': [],
+        'ai': ['weakness']
+    }
+])
+
+export const sei424Jajuan = new Trainer('SEI424', 'Jajuan', 'Hard', dancer, 'sei424', [
+    {
+        'pokemon': 'houndoom',
+        'moves': ['Fire+', 'Dark+', 'Electric', 'Fairy'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'accelgor',
+        'moves': ['Bug+', 'Water+', 'Flying', 'Fighting'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'gallade',
+        'moves': ['Fighting+', 'Psychic+', 'Flying', 'Ghost'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'electivire',
+        'moves': ['Electric+', 'Ice+', 'Flying', 'Rock'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'sceptile',
+        'moves': ['Grass+', 'Flying+', 'Rock+', 'Ice+'],
+        'items': [],
+        'ai': ['weakness']
+    },
+    {
+        'pokemon': 'dragonite',
+        'moves': ['Dragon+', 'Flying+', 'Rock+', 'Grass+'],
+        'items': [],
+        'ai': ['weakness']
+    }
+])
+
 export const hardTrainers = [
     sei424Cicely,
     sei424Matt,
     sei424Shalom,
     sei424Aleks,
-    sei424Michael
+    sei424Michael,
+    sei424Leo,
+    sei424Jajuan
 ]
