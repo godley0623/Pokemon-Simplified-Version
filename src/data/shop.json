@@ -1,0 +1,16 @@
+{
+    "shop": [
+        {
+            "item": "Evolution Stone",
+            "type": "consume",
+            "price": 1000,
+            "desc": "Evolves your Pokemon to their next stage"
+        },
+        {
+            "item": "TM Random",
+            "type": "consume",
+            "price": 100,
+            "desc": "Gives your Pokemon a random move. With a 10% chance of it being a plus move"
+        }
+    ]
+}
