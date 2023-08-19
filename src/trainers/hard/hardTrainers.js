@@ -1,9 +1,4 @@
 import { Trainer } from "../trainer"
-import youngster from '../../assets/trainerSprites/Spr_B2W2_Youngster.png'
-import pokefanM from '../../assets/trainerSprites/Spr_B2W2_Pokéfan_M.png'
-import backpackerM from '../../assets/trainerSprites/Spr_B2W2_Backpacker_M.png'
-import backpackerF from '../../assets/trainerSprites/Spr_B2W2_Backpacker_F.png'
-import clerkF from '../../assets/trainerSprites/Spr_B2W2_Clerk_F.png'
 import veteranM from '../../assets/trainerSprites/Spr_B2W2_Veteran_M.png'
 import veteranF from '../../assets/trainerSprites/Spr_B2W2_Veteran_F.png'
 import cyclistM from '../../assets/trainerSprites/Spr_B2W2_Cyclist_M.png'

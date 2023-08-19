@@ -1,8 +1,5 @@
 import { Trainer } from "../trainer"
 import youngster from '../../assets/trainerSprites/Spr_B2W2_Youngster.png'
-import pokefanM from '../../assets/trainerSprites/Spr_B2W2_Pokéfan_M.png'
-import backpackerM from '../../assets/trainerSprites/Spr_B2W2_Backpacker_M.png'
-import backpackerF from '../../assets/trainerSprites/Spr_B2W2_Backpacker_F.png'
 import clerkF from '../../assets/trainerSprites/Spr_B2W2_Clerk_F.png'
 import blackbelt from '../../assets/trainerSprites/Spr_B2W2_Black_Belt.png'
 import gentleman from '../../assets/trainerSprites/Spr_B2W2_Gentleman.png'
