@@ -15,6 +15,13 @@
             "desc": "Gives your Pokemon a random move. With a 10% chance of it being a plus move."
         },
         {
+            "item": "TM Normal",
+            "type": "consume",
+            "price": 200,
+            "sprite": "tm-random.png",
+            "desc": "Gives your Pokemon Attack: Normal. With a 10% chance of it being a plus move."
+        },
+        {
             "item": "VS Seeker",
             "type": "consume",
             "price": 300,
