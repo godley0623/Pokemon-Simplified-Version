@@ -7,7 +7,7 @@ import richboy from '../../assets/trainerSprites/Spr_B2W2_Rich_Boy.png'
 import musician from '../../assets/trainerSprites/Spr_B2W2_Musician.png'
 import dancer from '../../assets/trainerSprites/Spr_B2W2_Dancer.png'
 
-export const sei424Cicely = new Trainer('SEI424', 'Cicely', 'Hard', veteranF, 'sei424', [
+export const sei424Cicely = new Trainer('SEI424', 'Cicely', 'Hard', veteranF, 'sei424H', [
     {
         'pokemon': 'mawile',
         'moves': ['Steel+', 'Fairy+', 'Flying+'],
@@ -46,7 +46,7 @@ export const sei424Cicely = new Trainer('SEI424', 'Cicely', 'Hard', veteranF, 's
     }
 ])
 
-export const sei424Matt = new Trainer('SEI424', 'Matt', 'Hard', cyclistM, 'sei424', [
+export const sei424Matt = new Trainer('SEI424', 'Matt', 'Hard', cyclistM, 'sei424H', [
     {
         'pokemon': 'wobbuffet',
         'moves': ['Psychic+', 'Bug+'],
@@ -85,7 +85,7 @@ export const sei424Matt = new Trainer('SEI424', 'Matt', 'Hard', cyclistM, 'sei42
     }
 ])
 
-export const sei424Shalom = new Trainer('SEI424', 'Shalom', 'Hard', hiker, 'sei424', [
+export const sei424Shalom = new Trainer('SEI424', 'Shalom', 'Hard', hiker, 'sei424H', [
     {
         'pokemon': 'hypno',
         'moves': ['Psychic+', 'Bug', 'Steel+', 'Fire'],
@@ -124,7 +124,7 @@ export const sei424Shalom = new Trainer('SEI424', 'Shalom', 'Hard', hiker, 'sei4
     }
 ])
 
-export const sei424Aleks = new Trainer('SEI424', 'Aleks', 'Hard', richboy, 'sei424', [
+export const sei424Aleks = new Trainer('SEI424', 'Aleks', 'Hard', richboy, 'sei424H', [
     {
         'pokemon': 'persian',
         'moves': ['Normal+', 'Ice+', 'Rock', 'Dark'],
@@ -163,7 +163,7 @@ export const sei424Aleks = new Trainer('SEI424', 'Aleks', 'Hard', richboy, 'sei4
     }
 ])
 
-export const sei424Michael = new Trainer('SEI424', 'Michael', 'Hard', veteranM, 'sei424', [
+export const sei424Michael = new Trainer('SEI424', 'Michael', 'Hard', veteranM, 'sei424H', [
     {
         'pokemon': 'girafarig',
         'moves': ['Normal+', 'Psychic+', 'Fire', 'Dark'],
@@ -202,7 +202,7 @@ export const sei424Michael = new Trainer('SEI424', 'Michael', 'Hard', veteranM, 
     }
 ])
 
-export const sei424Leo = new Trainer('SEI424', 'Leo', 'Hard', musician, 'sei424', [
+export const sei424Leo = new Trainer('SEI424', 'Leo', 'Hard', musician, 'sei424H', [
     {
         'pokemon': 'archen',
         'moves': ['Rock+', 'Flying+', 'Electric', 'Ground'],
@@ -241,7 +241,7 @@ export const sei424Leo = new Trainer('SEI424', 'Leo', 'Hard', musician, 'sei424'
     }
 ])
 
-export const sei424Jajuan = new Trainer('SEI424', 'Jajuan', 'Hard', dancer, 'sei424', [
+export const sei424Jajuan = new Trainer('SEI424', 'Jajuan', 'Hard', dancer, 'sei424H', [
     {
         'pokemon': 'houndoom',
         'moves': ['Fire+', 'Dark+', 'Electric', 'Fairy'],
