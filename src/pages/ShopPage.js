@@ -69,30 +69,32 @@ export default function ShopPage() {
 
     return (
     <div className='shop-page'>
-        {items.map((item, key) => (
-            <div key={key} className='shop-item-container'>
-                <div className='sprite-container'>
-                    <img src={itemObj[item['sprite']]} alt='item sprite'/>
-                </div>
-                
-                <h4>{item['item']}</h4>
-                
-                <div className='quanity-container'>
-                    <button onClick={() => handleDecreaseQuanity(key)}>-</button>
-                    <input value={itemQuanity[key]}></input>
-                    <button onClick={() => handleIncreaseQuanity(key)}>+</button>
-                </div>
+        <div className='shop-items'>
+            {items.map((item, key) => (
+                <div key={key} className='shop-item-container'>
+                    <div className='sprite-container'>
+                        <img src={itemObj[item['sprite']]} alt='item sprite'/>
+                    </div>
+                    
+                    <h4>{item['item']}</h4>
+                    
+                    <div className='quanity-container'>
+                        <button onClick={() => handleDecreaseQuanity(key)}>-</button>
+                        <input value={itemQuanity[key]}></input>
+                        <button onClick={() => handleIncreaseQuanity(key)}>+</button>
+                    </div>
 
-                {money >= item['price']*itemQuanity[key] &&
-                    <h4 className='price-text green'>{item['price']*itemQuanity[key]}</h4>
-                }
-                {money < item['price']*itemQuanity[key] &&
-                    <h4 className='price-text red'>{item['price']*itemQuanity[key]}</h4>
-                }
+                    {money >= item['price']*itemQuanity[key] &&
+                        <h4 className='price-text green'>{item['price']*itemQuanity[key]}</h4>
+                    }
+                    {money < item['price']*itemQuanity[key] &&
+                        <h4 className='price-text red'>{item['price']*itemQuanity[key]}</h4>
+                    }
 
-                <button>Buy</button>
-            </div>
-        ))}
+                    <button className='buy-button'>Buy</button>
+                </div>
+            ))}
+        </div>
     </div>
   )
 }

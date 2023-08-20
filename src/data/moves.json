@@ -379,6 +379,16 @@
         "strikeNum": 1,
         "effect": ["Drain"]
     },
+    "Flare Blitz": {
+        "type": "fire",
+        "power": 120,
+        "accuracy": 100,
+        "recoil": true,
+        "recharge": false,
+        "priority": 0,
+        "strikeNum": 1,
+        "effect": []
+    },
     "Aqua Jet": {
         "type": "water",
         "power": 50,
