@@ -5,6 +5,7 @@ import bg from '../assets/backgroundImages/type-matchup-bg.jpeg'
 import { setPageBackground } from '../controller/controller'
 import shopItems from '../data/shop.json'
 import '../styles/shopPage.css'
+import '../styles/partyFooter.css'
 
 import evolutionStone from '../assets/itemSprites/evolution-stone.png'
 import tmRandom from '../assets/itemSprites/tm-random.png'
@@ -41,7 +42,7 @@ const currentMoney = Number(localStorage.getItem('PSV: money'))
 
 export default function ShopPage() {
     const navigate = useNavigate();
-    //setPageBackground(bg, 'cover');
+    setPageBackground();
 
     const [itemQuanity, setItemQuanity] = useState(itemQuanityArray);
     const [money, setMoney] = useState(currentMoney);
@@ -67,8 +68,17 @@ export default function ShopPage() {
         setItemQuanity(cloneQuanity)
     }
 
+    function handleQuanityChange(e, index) {
+        return
+        // const cloneQuanity = [...itemQuanity]
+        // cloneQuanity[index] = Number(e.target.value)
+
+        // setItemQuanity(cloneQuanity)
+    }
+
     return (
     <div className='shop-page'>
+        <div id='stat-display'></div>
         <div className='shop-items'>
             {items.map((item, key) => (
                 <div key={key} className='shop-item-container'>
@@ -80,7 +90,7 @@ export default function ShopPage() {
                     
                     <div className='quanity-container'>
                         <button onClick={() => handleDecreaseQuanity(key)}>-</button>
-                        <input value={itemQuanity[key]}></input>
+                        <input onChange={(e, key) => handleQuanityChange(e, key)} value={itemQuanity[key]}></input>
                         <button onClick={() => handleIncreaseQuanity(key)}>+</button>
                     </div>
 
@@ -95,6 +105,7 @@ export default function ShopPage() {
                 </div>
             ))}
         </div>
+        <PokemonPartyFooter />
     </div>
   )
 }
