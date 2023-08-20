@@ -38,6 +38,8 @@ for(let i=0; i<items.length; i++) {
 
 const currentMoney = Number(localStorage.getItem('PSV: money'))
 
+let bag;
+
 
 
 export default function ShopPage() {
@@ -50,7 +52,19 @@ export default function ShopPage() {
     useEffect(() => {
         const pkmnParty = localStorage.getItem('PSV: pkmn-party')
         if (!pkmnParty) navigate('/play')
+
+        bag = localStorage.getItem('PSV: bag')
+        if (!bag) {
+            bag = []
+            localStorage.setItem('PSV: bag', JSON.stringify(bag))
+        } else {
+            bag = JSON.parse(localStorage.getItem('PSV: bag'))
+        }
     }, [])
+
+    useEffect(() => {
+        localStorage.setItem('PSV: money', JSON.stringify(money))
+    }, [money])
 
     function handleIncreaseQuanity(index) {
         const cloneQuanity = [...itemQuanity]
@@ -74,6 +88,37 @@ export default function ShopPage() {
         // cloneQuanity[index] = Number(e.target.value)
 
         // setItemQuanity(cloneQuanity)
+    }
+
+    function handleBuy(index) {
+        if (money < items[index]['price']) return
+
+        setMoney(prevMoney => prevMoney - items[index]['price'])
+
+        const item = {
+            'item': items[index]['item'],
+            'type': items[index]['type'],
+            'sprite': items[index]['sprite'],
+            'desc': items[index]['desc'],
+            'quanity': itemQuanity[index]
+        }
+
+        if (bag.length === 0) {
+            bag.push(item)
+            localStorage.setItem('PSV: bag', JSON.stringify(bag))
+            return
+        } else {
+            for (let i=0; i<bag.length; i++) {
+                if (bag[i]['item'] === item['item']) {
+                    bag[i]['quanity'] += item['quanity']
+                    localStorage.setItem('PSV: bag', JSON.stringify(bag))
+                    return
+                }
+            }
+            bag.push(item)
+            localStorage.setItem('PSV: bag', JSON.stringify(bag))
+            return
+        }
     }
 
     return (
@@ -101,7 +146,7 @@ export default function ShopPage() {
                         <h4 className='price-text red'>{item['price']*itemQuanity[key]}</h4>
                     }
 
-                    <button className='buy-button'>Buy</button>
+                    <button onClick={() => handleBuy(key)} className='buy-button'>Buy</button>
                 </div>
             ))}
         </div>
