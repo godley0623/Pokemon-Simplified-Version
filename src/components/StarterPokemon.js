@@ -11,7 +11,8 @@ export default function StarterPokemon(props) {
   const navigate = useNavigate()
   function handlePkmnClick() {
     addPkmnToParty(pokemon);
-    navigate('/play')
+    localStorage.setItem('PSV: money', '500');
+    navigate('/play');
   }
 
   return (

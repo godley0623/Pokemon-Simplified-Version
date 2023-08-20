@@ -4,6 +4,7 @@ import genOne from '../data/genone_pkmn.json'
 import genTwo from '../data/gentwo_pkmn.json'
 import genThree from '../data/genthree_pkmn.json'
 import genFour from '../data/genfour_pkmn.json'
+import genFive from '../data/genfive_pkmn.json'
 
 export default function FirstPokemon() {
   return (
@@ -40,6 +41,14 @@ export default function FirstPokemon() {
                     <StarterPokemon name={genFour['turtwig']['name']} sprite={genFour['turtwig']['sprite'][0]}/>
                     <StarterPokemon name={genFour['chimchar']['name']} sprite={genFour['chimchar']['sprite'][0]}/>
                     <StarterPokemon name={genFour['piplup']['name']} sprite={genFour['piplup']['sprite'][0]}/>
+                </div>
+            </div>
+            <div className='unova'>
+                <h2>Unova Starters</h2>
+                <div className='starters'>
+                    <StarterPokemon name={genFive['snivy']['name']} sprite={genFive['snivy']['sprite'][0]}/>
+                    <StarterPokemon name={genFive['tepig']['name']} sprite={genFive['tepig']['sprite'][0]}/>
+                    <StarterPokemon name={genFive['oshawott']['name']} sprite={genFive['oshawott']['sprite'][0]}/>
                 </div>
             </div>
         </div>

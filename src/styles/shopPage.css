@@ -1,0 +1,15 @@
+.shop-page {
+    display: flex;
+}
+
+.shop-page .green {
+    color: limegreen;
+}
+.shop-page .red {
+    color: red;
+}
+
+.shop-page input {
+    width: 10%;
+    text-align: center;
+}
