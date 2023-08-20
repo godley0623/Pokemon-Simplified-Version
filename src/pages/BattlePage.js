@@ -400,11 +400,11 @@ export default function BattlePage() {
             <div className='party-catch-container'>
                 <div className='battle-party-container'>
                     {pkmnParty &&
-                    pkmnParty.map((pkmn, key) => (
-                    <div key={key} className={`icon-container ${key}`} onClick={handlePkmnSwitch}>
-                            <img className={`${key}`} src={pkmn['icon']} alt='pokemon icon'/>
-                    </div> 
-                    ))
+                    pkmnParty.map((pkmn, key) => {
+                        return (<div key={key} className={`icon-container ${key}`}>
+                                <img onClick={handlePkmnSwitch} className={`${key}`} src={pkmn['icon']} alt='pokemon icon'/>
+                        </div>)
+                    })
                     }
                 </div>
                 

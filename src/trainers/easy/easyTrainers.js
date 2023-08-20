@@ -26,7 +26,7 @@ export const youngsterJoey = new Trainer('Youngster', 'Joey', 'Easy', youngster,
     }
 ])
 
-export const sei424Jaime = new Trainer('SEI424', 'Jaime', 'Easy', youngster, 'sei424', [
+export const sei424Jaime = new Trainer('SEI424', 'Jaime', 'Easy', youngster, 'sei424E', [
     {
         'pokemon': 'chatot',
         'moves': ['Normal', 'Flying'],
@@ -47,7 +47,7 @@ export const sei424Jaime = new Trainer('SEI424', 'Jaime', 'Easy', youngster, 'se
     }
 ])
 
-export const sei424Jude = new Trainer('SEI424', 'Jude', 'Easy', gentleman, 'sei424', [
+export const sei424Jude = new Trainer('SEI424', 'Jude', 'Easy', gentleman, 'sei424E', [
     {
         'pokemon': 'bidoof',
         'moves': ['Normal', 'Water', 'Flying'],
@@ -68,7 +68,7 @@ export const sei424Jude = new Trainer('SEI424', 'Jude', 'Easy', gentleman, 'sei4
     }
 ])
 
-export const sei424Nafisa = new Trainer('SEI424', 'Nafisa', 'Easy', clerkF, 'sei424', [
+export const sei424Nafisa = new Trainer('SEI424', 'Nafisa', 'Easy', clerkF, 'sei424E', [
     {
         'pokemon': 'growlithe',
         'moves': ['Fire', 'Psychic'],
@@ -89,7 +89,7 @@ export const sei424Nafisa = new Trainer('SEI424', 'Nafisa', 'Easy', clerkF, 'sei
     }
 ])
 
-export const sei424Elijah = new Trainer('SEI424', 'Elijah', 'Easy', blackbelt, 'sei424', [
+export const sei424Elijah = new Trainer('SEI424', 'Elijah', 'Easy', blackbelt, 'sei424E', [
     {
         'pokemon': 'mankey',
         'moves': ['Fighting', 'Dark'],
@@ -110,7 +110,7 @@ export const sei424Elijah = new Trainer('SEI424', 'Elijah', 'Easy', blackbelt, '
     }
 ])
 
-export const sei424Darious = new Trainer('SEI424', 'Darious', 'Easy', worker, 'sei424', [
+export const sei424Darious = new Trainer('SEI424', 'Darious', 'Easy', worker, 'sei424E', [
     {
         'pokemon': 'voltorb',
         'moves': ['Electric', 'Fire'],
