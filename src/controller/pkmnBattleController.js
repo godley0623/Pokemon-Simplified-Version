@@ -88,6 +88,9 @@ export function damageCalc(attacker, attackerMove, defender) {
         case 0:
             typeText = `It doesn't affect ${capFirstLetter(defender['name'])}`
         break;
+
+        default:
+        break
     }
 
     return [Math.floor(damage), typeText, critText];

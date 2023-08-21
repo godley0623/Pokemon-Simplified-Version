@@ -8,7 +8,7 @@ import '../styles/battlePage.css';
 import '../styles/type.css';
 import moveJson from '../data/moves.json';
 import grassBg from '../assets/pokemonBWBG/battle_bg_grass.png';
-import indoorBg from '../assets/pokemonBWBG/battle_bg_indoor.png';
+//import indoorBg from '../assets/pokemonBWBG/battle_bg_indoor.png';
 import pokeball from '../assets/pokeball.png';
 
 let canAttack = true;
@@ -89,7 +89,7 @@ export default function BattlePage() {
             console.log(bgm)
             bgm.play();
         }
-    }, [])
+    },[navigate, param])
 
     useEffect(() => {
         if (oppPkmn['name']) {
@@ -100,7 +100,7 @@ export default function BattlePage() {
             }
         }
         setOppHp([oppPkmn['hp'], oppPkmn['currentHp']])
-    }, [oppPkmn])
+    }, [oppPkmn, param, trainer.name, trainer.trainerClass])
 
     useEffect(() => {
         if (pkmnParty[0]) {
@@ -164,7 +164,7 @@ export default function BattlePage() {
                 }
             }, 2000)
         }
-    }, [oppHp])
+    }, [oppHp, param, trainer.name, trainer.trainerClass])
 
     useEffect(() => {
         if (yourHp[1] === 0 && param !== 'wild') {
@@ -179,7 +179,7 @@ export default function BattlePage() {
                 }
             }, 2000)
         }
-    }, [yourHp])
+    }, [yourHp, param, pkmnParty])
 
     useEffect(() => {
         battleTextRef.current.scrollTop = battleTextRef.current.scrollHeight;
@@ -264,6 +264,9 @@ export default function BattlePage() {
                     
                     case 'weakness':
                         oppMove = aiWeakness(oppPkmn['moves'], pkmnParty[0])
+                    break
+
+                    default:
                     break
                 }
             }

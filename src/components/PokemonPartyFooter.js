@@ -15,7 +15,7 @@ export default function PokemonPartyFooter() {
     useEffect(() => {
         if (!pkmnParty) setPkmnParty([])
         root = createRoot(document.getElementById('stat-display'))
-    }, []);
+    }, [pkmnParty]);
 
     function handlePkmnStats(e) {
         const partyIndex = Number(e.target.className);

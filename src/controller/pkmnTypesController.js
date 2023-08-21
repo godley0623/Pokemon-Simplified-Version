@@ -142,6 +142,8 @@ export function setTypeMatchup(type) {
             resist.push("Fire", "Water", "Grass", "Electric");
             strongAgainst.push("Dragon");
             break;
+        default:
+        break;
     }
 
     // Set the type match up for the second type
@@ -242,6 +244,8 @@ export function setTypeMatchup(type) {
             resist.push("Fire", "Water", "Grass", "Electric");
             strongAgainst.push("Dragon");
             break;
+        default:
+        break;
     }
 
     return [weakTo, resist, immuneTo, strongAgainst, type];
@@ -263,10 +267,10 @@ export function weaknessCheck(matchup){
 
     //Check Weakness
     for(let o = 0; o < matchup[w].length; o++){
-        if (matchup[w][o] != undefined){
+        if (matchup[w][o] !== undefined){
             if(matchup[w].length > o+1){
                 for(let p = o+1; p < matchup[w].length; p++){
-                    if(matchup[w][o] == matchup[w][p]){
+                    if(matchup[w][o] === matchup[w][p]){
                         dmg[matchup[w][o]] = 4;
                         delete matchup[w][p];
                         dupe = true
@@ -283,10 +287,10 @@ export function weaknessCheck(matchup){
 
     //Check Resist
     for(let o = 0; o < matchup[r].length; o++){
-        if (matchup[r][o] != undefined){
+        if (matchup[r][o] !== undefined){
             if(matchup[r].length > o+1){
                 for(let p = o+1; p < matchup[r].length; p++){
-                    if(matchup[r][o] == matchup[r][p]){
+                    if(matchup[r][o] === matchup[r][p]){
                         dmg[matchup[r][o]] = dmg[matchup[r][o]] / 4 || .25;
                         delete matchup[r][p];
                         dupe = true
@@ -301,17 +305,17 @@ export function weaknessCheck(matchup){
         }
 
         //Remove from the dict if resist becomes normal effective
-        if (dmg[matchup[r][o]] == 1){
+        if (dmg[matchup[r][o]] === 1){
             delete dmg[matchup[r][o]];
         }
     }
 
     //Check Immunity
     for(let o = 0; o < matchup[i].length; o++){
-        if (matchup[i][o] != undefined){
+        if (matchup[i][o] !== undefined){
             if(matchup[i].length > o+1){
                 for(let p = o+1; p < matchup[i].length; p++){
-                    if(matchup[i][o] == matchup[i][p]){
+                    if(matchup[i][o] === matchup[i][p]){
                         dmg[matchup[i][o]] = dmg[matchup[i][o]] * 0 || 0;
                         delete matchup[i][p];
                         dupe = true
@@ -344,6 +348,8 @@ export function weaknessCheck(matchup){
             case 0:
                 immune.push(key);
                 break;
+            default:
+            break;
         }
     }
 

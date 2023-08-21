@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import PokemonPartyFooter from '../components/PokemonPartyFooter'
-import bg from '../assets/backgroundImages/type-matchup-bg.jpeg'
 import { setPageBackground } from '../controller/controller'
 import shopItems from '../data/shop.json'
 import '../styles/shopPage.css'
@@ -60,7 +59,7 @@ export default function ShopPage() {
         } else {
             bag = JSON.parse(localStorage.getItem('PSV: bag'))
         }
-    }, [])
+    }, [navigate])
 
     useEffect(() => {
         localStorage.setItem('PSV: money', JSON.stringify(money))

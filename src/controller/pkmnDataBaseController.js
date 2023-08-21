@@ -48,7 +48,7 @@ export function getAllPkmnByType(type) {
 
    Object.keys(allPkmn).forEach((key) => {
     if (type[1] !== 'None') {
-        if (allPkmn[key]['type'][0] === type[0].toLowerCase() && allPkmn[key]['type'][1] === type[1].toLowerCase() || allPkmn[key]['type'][0] === type[1].toLowerCase() && allPkmn[key]['type'][1] === type[0].toLowerCase()) {
+        if ( (allPkmn[key]['type'][0] === type[0].toLowerCase() && allPkmn[key]['type'][1] === type[1].toLowerCase()) || (allPkmn[key]['type'][0] === type[1].toLowerCase() && allPkmn[key]['type'][1] === type[0].toLowerCase())) {
             pkmnArray.push({
                 'name': key,
                 'icon': allPkmn[key]['icon']
@@ -92,6 +92,9 @@ export function setTrainer () {
 
         case 'Hard':
             trainer = choose(hardTrainers)
+        break
+
+        default:
         break
     }
     return trainer;
