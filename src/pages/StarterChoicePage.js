@@ -11,7 +11,7 @@ export default function StarterChoicePage() {
   useEffect(() => {
     const pkmnParty = localStorage.getItem('PSV: pkmn-party');
     if (pkmnParty) navigate('/play');
-  }, [])
+  }, [navigate])
 
   setPageBackground(bg);
   return (
