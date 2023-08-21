@@ -5,7 +5,6 @@ import { pkmnTypes } from '../controller/pkmnTypesController'
 import moveJson from '../data/moves.json'
 
 export default function PkmnStatDisplay(props) {
-
     const pkmnType1 = pkmnTypes[props.pkmn.type[0]];
     const pkmnType2 = pkmnTypes[props.pkmn.type[1]];
 
@@ -33,6 +32,16 @@ export default function PkmnStatDisplay(props) {
         localStorage.setItem('PSV: stored-types', JSON.stringify(storedTypes))
 
         window.open("/type-matchup", "_blank");
+    }
+
+    function handleReleaseButton() {
+        const pkmnParty = JSON.parse(localStorage.getItem('PSV: pkmn-party'))
+        const newArray = pkmnParty.slice(0, props.index).concat(pkmnParty.slice(props.index + 1));
+        localStorage.setItem('PSV: pkmn-party', JSON.stringify(newArray))
+
+        window.location.reload();
+
+        closeDisplay();
     }
 
   return (
@@ -70,7 +79,7 @@ export default function PkmnStatDisplay(props) {
                 <div onClick={handleFrontButton} className='front-button'>Front</div>
                 <div className='box-button'>Box</div>
                 <div onClick={handleMatchupButton} className='matchup-button'>Matchups</div>
-                <div className='release-button'>Release</div>
+                <div onClick={handleReleaseButton} className='release-button'>Release</div>
             </div>
         </div>
     </div>
