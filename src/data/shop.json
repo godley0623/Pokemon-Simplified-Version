@@ -67,21 +67,21 @@
             "item": "Flare Blitz",
             "type": "move",
             "price": 1000,
-            "sprite": "grass-move.png",
+            "sprite": "fire-move.png",
             "desc": "If the holder is a Fire type; Changes Attack: Fire to Flare Blitz."
         },
         {
             "item": "Shield Bash",
             "type": "move",
             "price": 750,
-            "sprite": "normal-move.png",
+            "sprite": "steel-move.png",
             "desc": "Changes Attack: Rock or Steel to Shield Bash."
         },
         {
             "item": "Dragon Rush",
             "type": "move",
             "price": 800,
-            "sprite": "normal-move.png",
+            "sprite": "dragon-move.png",
             "desc": "Changes Attack: Dragon to Dragon Rush."
         }
         
