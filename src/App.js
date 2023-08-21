@@ -6,6 +6,7 @@ import TypeMatchupPage from "./pages/TypeMatchupPage";
 import PlayPage from "./pages/PlayPage";
 import BattlePage from "./pages/BattlePage";
 import ShopPage from "./pages/ShopPage";
+import BagPage from "./pages/BagPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/type-matchup' element={<TypeMatchupPage />} />
         <Route path='/battle/:type' element={<BattlePage />} />
         <Route path='/shop' element={<ShopPage />} />
+        <Route path='/bag' element={<BagPage />} />
       </Routes>
     </div>
   );

@@ -30,6 +30,9 @@ export default function PokemonPartyFooter() {
     function handleShop() {
         navigate('/shop')
     }
+    function handleBag() {
+        navigate('/bag')
+    }
 
   return (
     <div className='pkmn-party-footer'>
@@ -43,13 +46,18 @@ export default function PokemonPartyFooter() {
         
         {currentRoute === '/play' && <div className='footer-buttons'>
             <div className='box'>Box</div>
-            <div className='bag'>Bag</div>
+            <div onClick={handleBag} className='bag'>Bag</div>
             <div onClick={handleShop} className='shop'>Shop</div>
         </div>}
         {currentRoute === '/shop' && <div className='footer-buttons'>
             <div className='box'>Box</div>
-            <div className='bag'>Bag</div>
-            <div onClick={handleBack} className='shop'>Back</div>
+            <div onClick={handleBag} className='bag'>Bag</div>
+            <div onClick={handleBack} className='back'>Back</div>
+        </div>}
+        {currentRoute === '/bag' && <div className='footer-buttons'>
+            <div className='box'>Box</div>
+            <div onClick={handleShop} className='shop'>Shop</div>
+            <div onClick={handleBack} className='back'>Back</div>
         </div>}
     </div>
   )
