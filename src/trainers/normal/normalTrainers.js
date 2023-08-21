@@ -1,10 +1,10 @@
 import { choose } from '../../controller/controller'
 import { Trainer } from "../trainer"
 import youngster from '../../assets/trainerSprites/Spr_B2W2_Youngster.png'
-import pokefanM from '../../assets/trainerSprites/Spr_B2W2_Pokéfan_M.png'
+import pokefanM from '../../assets/trainerSprites/Spr_B2W2_Pokefan_M.png'
 import backpackerM from '../../assets/trainerSprites/Spr_B2W2_Backpacker_M.png'
 import backpackerF from '../../assets/trainerSprites/Spr_B2W2_Backpacker_F.png'
-import breederM from '../../assets/trainerSprites/Spr_B2W2_Pokémon_Breeder_M.png'
+import breederM from '../../assets/trainerSprites/Spr_B2W2_Pokemon_Breeder_M.png'
 import joker from '../../assets/trainerSprites/Spr_B2W2_Harlequin.png'
 import lady from '../../assets/trainerSprites/Spr_B2W2_Lady.png'
 import striker from '../../assets/trainerSprites/Spr_B2W2_Striker.png'
