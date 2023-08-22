@@ -26,7 +26,7 @@ export let midPkmn = mid;
 export let highPkmn = high;
 
 export function getPkmnParty() {
-    return localStorage.getItem('PSV: pkmn-party');
+    return JSON.parse(localStorage.getItem('PSV: pkmn-party'));
 }
 
 export function addPkmnToParty(pkmn) {
