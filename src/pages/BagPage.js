@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { createRoot } from 'react-dom/client';
 import PokemonPartyFooter from '../components/PokemonPartyFooter'
 import { setPageBackground } from '../controller/controller'
@@ -22,29 +21,49 @@ export default function BagPage() {
     setPageBackground()
 
     const [itemQuanity, setItemQuanity] = useState(itemQuanityArr)
+    const [bagState, setBagState] = useState(bag)
 
     useEffect(() => {
         root = createRoot(document.getElementById('bag-display'))
+        let bag = JSON.parse(localStorage.getItem('PSV: bag'))
+        if (!bag) bag = []
+
+        let itemQuanityArr = [];
+        for (let i=0; i<bag.length; i++) {
+            itemQuanityArr.push(bag[i]['quanity'])
+        }
+        setItemQuanity(itemQuanityArr)
     }, [])
 
     function handleButtonClick(index) {
         switch (bag[index]['item']){
             case 'Evolution Stone':
-                root.render(<EvolutionChoice root={root}/>)
+                root.render(<EvolutionChoice root={root} index={index} reduceQuanity={reduceQuanity}/>)
             break;
         }
+    }
+
+    function reduceQuanity(index) {
+        console.log(bag)
+        bag[index]['quanity']--
+        if (bag[index]['quanity'] <= 0) {
+            bag = bag.slice(0, index).concat(bag.slice(index + 1));
+        }
+        localStorage.setItem('PSV: bag', JSON.stringify(bag))
+
+        window.location.reload();
     }
 
   return (
     <div className='bag-page'>
         <div id='bag-display'></div>
         <div id='stat-display'></div>
-        {bag.length === 0 && 
+        {bagState.length === 0 && 
         <h1 className='no-items'>Your bag is empty</h1>
         }
-        {bag.length > 0 && 
+        {bagState.length > 0 && 
         <div className='bag-items'>
-            {bag.map((bagItem, key) => (
+            {bagState.map((bagItem, key) => (
                 <div key={key} className='bag-item-container'>
                     <div className='sprite-container'>
                         <img src={itemObj[bagItem['sprite']]} alt='item sprite'/>

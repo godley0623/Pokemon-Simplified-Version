@@ -9,7 +9,6 @@ export default function PokemonPartyFooter() {
     const location = useLocation();
     const navigate = useNavigate();
     const currentRoute = location.pathname;
-    console.log(currentRoute)
     const [pkmnParty, setPkmnParty] = useState(JSON.parse(localStorage.getItem('PSV: pkmn-party')))
 
     useEffect(() => {

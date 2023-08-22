@@ -16,6 +16,7 @@ let low = [];
 let mid = [];
 let high = [];
 Object.keys(allPkmn).forEach((key) => {
+    allPkmn[key].item = []
     if (allPkmn[key]['atk'] <= 5) low.push(allPkmn[key]);
     else if (allPkmn[key]['atk'] <= 9) mid.push(allPkmn[key]);
     else high.push(allPkmn[key]);
@@ -27,6 +28,10 @@ export let highPkmn = high;
 
 export function getPkmnParty() {
     return JSON.parse(localStorage.getItem('PSV: pkmn-party'));
+}
+
+export function updatePkmnParty(party) {
+    localStorage.setItem('PSV: pkmn-party', JSON.stringify(party))
 }
 
 export function addPkmnToParty(pkmn) {

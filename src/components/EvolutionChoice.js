@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getPkmnParty, allPkmn } from '../controller/pkmnDataBaseController';
+import { getPkmnParty, updatePkmnParty, allPkmn } from '../controller/pkmnDataBaseController';
 import evolutionJson from '../data/evolution.json'
 import '../styles/evolutionChoice.css'
 
@@ -30,7 +30,20 @@ export default function EvolutionChoice(props) {
         closeDisplay()
     }
 
-    console.log(pkmnChoice[0][0])
+    function handleEvolution(evolvedPkmn, index) {
+        const pkmn = getPkmnParty()[index]
+        let pkmnParty = getPkmnParty()
+       
+        evolvedPkmn.moves = pkmn.moves
+        if (pkmn.item) evolvedPkmn.item = pkmn.item
+
+        pkmnParty[index] = evolvedPkmn
+        updatePkmnParty(pkmnParty)
+
+        props.reduceQuanity(props.index)
+    }
+
+
 
     return (
     <div className='evolution-choice-display'>
@@ -42,9 +55,9 @@ export default function EvolutionChoice(props) {
                         <img src={allPkmn[pkmn[0]]['sprite'][0]} alt='pokemon sprite'/>
                     </div>
                     <div className='icon-container'>
-                        {pkmn[1].map((p, key) => (
-                           <div key={key} className='option-container'>
-                                <img src={allPkmn[p]['icon']} alt='icon sprite'/>
+                        {pkmn[1].map((p, key2) => (
+                           <div key={key2} className='option-container'>
+                                <img onClick={() => handleEvolution({...allPkmn[p]}, pkmnChoice[key][2])} src={allPkmn[p]['icon']} alt='icon sprite'/>
                            </div> 
                         ))}
                     </div>
