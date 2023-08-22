@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { getPkmnParty, updatePkmnParty, allPkmn } from '../controller/pkmnDataBaseController';
 import evolutionJson from '../data/evolution.json'
 import '../styles/evolutionChoice.css'
@@ -6,7 +6,8 @@ import '../styles/evolutionChoice.css'
 
 
 export default function EvolutionChoice(props) {
-    const [pkmnChoice, setPkmnChoice] = useState(getPkmnToEvolve())
+    //const [pkmnChoice, setPkmnChoice] = useState(getPkmnToEvolve())
+    const pkmnChoice = getPkmnToEvolve()
 
     function closeDisplay() {
         props.root.render(<></>);

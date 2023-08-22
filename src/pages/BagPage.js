@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { createRoot } from 'react-dom/client';
 import PokemonPartyFooter from '../components/PokemonPartyFooter'
 import { setPageBackground } from '../controller/controller'
-import { itemObj, items} from '../controller/itemController'
+import { itemObj } from '../controller/itemController'
 import '../styles/bagPage.css'
 import '../styles/partyFooter.css'
 import EvolutionChoice from '../components/EvolutionChoice';
@@ -21,7 +21,8 @@ export default function BagPage() {
     setPageBackground()
 
     const [itemQuanity, setItemQuanity] = useState(itemQuanityArr)
-    const [bagState, setBagState] = useState(bag)
+    //const [bagState, setBagState] = useState(bag)
+    const bagState = bag
 
     useEffect(() => {
         root = createRoot(document.getElementById('bag-display'))
@@ -39,6 +40,9 @@ export default function BagPage() {
         switch (bag[index]['item']){
             case 'Evolution Stone':
                 root.render(<EvolutionChoice root={root} index={index} reduceQuanity={reduceQuanity}/>)
+            break;
+
+            default:
             break;
         }
     }
