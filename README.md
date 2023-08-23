@@ -7,9 +7,9 @@ A simplified version of the Pokemon Games' battle system.
 # Technology USed
 -HTML  
 -CSS  
--Javascript
--React
--PokeAPI
+-Javascript  
+-React  
+-PokeAPI  
 
 # How to play
 -Choose a starter pokemon by clicking on one of the 15 starter options.
