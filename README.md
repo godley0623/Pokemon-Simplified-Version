@@ -13,18 +13,18 @@ A simplified version of the Pokemon Games' battle system.
 
 # How to play
 -Choose a starter pokemon by clicking on one of the 15 starter options.  
-![image](screenshots/screenshot4.png)  
+![image](Screenshots/screenshot4.png)  
 -Battle wild pokemon to build your roster.  
-![image](screenshots/screenshot5.png)  
+![image](Screenshots/screenshot5.png)  
 -Battle and defeat the 19 SEI424 Cohort of General Assembly  
-![image](screenshots/screenshot6.png)  
+![image](Screenshots/screenshot6.png)  
 
 # Battling 
 -Every attack has a 15% chance to be a critcial hit.  
 
 -Learn the type matchups with the in-game type matchup checker:  
 https://pokemon-simplified-version.netlify.app/type-matchup  
-![image](screenshots/screenshot7.png)  
+![image](Screenshots/screenshot7.png)  
 
 
 # Wild battles
@@ -33,5 +33,5 @@ https://pokemon-simplified-version.netlify.app/type-matchup
 
 # Shop
 -Buy useful items from the shop  
-![image](screenshots/screenshot8.png)
+![image](Screenshots/screenshot8.png)
 
