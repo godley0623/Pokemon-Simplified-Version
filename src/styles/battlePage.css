@@ -181,24 +181,36 @@
     margin-left: 0.5%;
 }
 
-.opp-hp-container .hp-bar {
+.opp-hp-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    width: 16rem;
+    height: 6.8rem;
+
     position: absolute;
+    right: 12.25%;
+}
+
+.opp-hp-container .hp-bar {
+    /* position: absolute;
     top: 20%;
-    right: 13%;
+    right: 13%; */
 
     width: 15rem;
     height: 1.2rem;
 
     border: 2px solid black;
     border-radius: 1rem;
+
+    margin: 0;
 }
-.opp-hp-container h3 {
+/* .opp-hp-container h3 {
     position: absolute;
     top: 14.5%;
     right: 24.9%;
-
-    /* margin-right: 5.7%; */
-}
+} */
 
 
 .attack-player {
