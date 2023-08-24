@@ -10,8 +10,13 @@ export default function HomePage() {
     setPageBackground(bg);
     const navigate = useNavigate();
     function goToTypeMatchupPage() {
-        window.open("/type-matchup", "_blank");
+        window.open("/type-matchup", "_blank")
     }
+
+    function goToGitHub() {
+        window.open("https://github.com/godley0623/Pokemon-Simplified-Version", "_blank")
+    }
+
     function goToPlayPage() {
         navigate('/play')
     }
@@ -20,7 +25,7 @@ export default function HomePage() {
         <div className='button-container'>
             <div className='non-play'>
                 <LandingPageButton text='Type Matchups' clickCB={goToTypeMatchupPage}/>
-                <LandingPageButton text='GitHub'/>
+                <LandingPageButton text='GitHub' clickCB={goToGitHub}/>
             </div>
             <div className='play'>
                 <LandingPageButton text='Play' clickCB={goToPlayPage}/>
