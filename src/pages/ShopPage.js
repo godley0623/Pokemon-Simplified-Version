@@ -62,9 +62,9 @@ export default function ShopPage() {
     }
 
     function handleBuy(index) {
-        if (money < items[index]['price']) return
+        if (money < (items[index]['price'] * itemQuanity[index]) ) return
 
-        setMoney(prevMoney => prevMoney - items[index]['price'])
+        setMoney(prevMoney => prevMoney - (items[index]['price'] * itemQuanity[index]))
 
         const item = {
             'item': items[index]['item'],
