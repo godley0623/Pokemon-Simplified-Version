@@ -19,6 +19,7 @@ let trainerPkmnFainted = [];
 let battleTextArr = [];
 
 let bgm;
+let pkmnPartyTracker = [];
 
 export default function BattlePage() {    
     setPageBackground('');
@@ -60,6 +61,8 @@ export default function BattlePage() {
         const lsParty = JSON.parse(localStorage.getItem('PSV: pkmn-party'));
         fullHealParty(lsParty);
         setPkmnParty(lsParty);
+
+        addBattleText(`${capFirstLetter(lsParty[0]['name'])} was sent out!`, battleTextArr, setBtTracker)
         
         if (!localStorage.getItem('PSV: wild-pkmn') && param === 'wild') {
             navigate('/play');
@@ -82,7 +85,7 @@ export default function BattlePage() {
             setTrainer(trainerObj);
             setOppPkmn(trainerPkmnParty[0]);
             let bt = `${trainerObj.trainerClass} ${trainerObj.name} sent out ${capFirstLetter(trainerPkmnParty[0].name)}`
-            addBattleText(bt, battleTextArr, setBattleText)
+            addBattleText(bt, battleTextArr, setBtTracker)
             localStorage.removeItem('PSV: trainer');
 
             bgm = setAudio(trainerObj.bgm);
@@ -106,6 +109,7 @@ export default function BattlePage() {
         if (pkmnParty[0]) {
             setYourHp([pkmnParty[0]['hp'], pkmnParty[0]['currentHp']])
         }
+        pkmnPartyTracker = pkmnParty
     }, [pkmnParty])
 
     useEffect(() => {
@@ -123,8 +127,14 @@ export default function BattlePage() {
         })
 
         faintHandler(yourPkmnImg, yourHp, 750);
-
     }, [yourHp, yourFillColor])
+
+    useEffect(() => {
+        if (yourHp[1] <= 0) {
+            addBattleText(`${capFirstLetter(pkmnPartyTracker[0]['name'])} fainted!`, battleTextArr, setBtTracker)
+        }
+        
+    }, [yourHp])
 
     useEffect(() => {
         const hp = Math.floor(oppHp[1] / oppHp[0] * 100);
@@ -207,6 +217,7 @@ export default function BattlePage() {
                     localStorage.setItem('PSV: pkmn-party', JSON.stringify(pkmnParty));
 
                     pokeball.classList.add('hidden');
+                    addBattleText(`${capFirstLetter(oppPkmn['name'])} was captured!`, battleTextArr, setBtTracker)
                 }
             } else {
                 console.log('You need to defeat the pokemon before you can catch it.')
@@ -327,6 +338,12 @@ export default function BattlePage() {
         const temp = newArray[index1];
         newArray[index1] = newArray[index2];
         newArray[index2] = temp;
+
+        if (pkmnParty[index1]['currentHp'] > 0) {
+            addBattleText(`${capFirstLetter(pkmnParty[index1]['name'])} was called back, ${capFirstLetter(pkmnParty[index2]['name'])} was sent out!`, battleTextArr, setBtTracker)
+        } else {
+            addBattleText(`${capFirstLetter(pkmnParty[index2]['name'])} was sent out!`, battleTextArr, setBtTracker)
+        }
     
         // Update the state with the modified array
         setPkmnParty(newArray);
