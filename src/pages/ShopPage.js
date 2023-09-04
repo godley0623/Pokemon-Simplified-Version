@@ -7,8 +7,6 @@ import '../styles/shopPage.css'
 import '../styles/partyFooter.css'
 
 
-const currentMoney = Number(localStorage.getItem('PSV: money'))
-
 let bag;
 
 
@@ -16,6 +14,9 @@ let bag;
 export default function ShopPage() {
     const navigate = useNavigate();
     setPageBackground();
+
+    const currentMoney = Number(localStorage.getItem('PSV: money'))
+    console.log(currentMoney)
 
     const [itemQuanity, setItemQuanity] = useState(itemQuanityArray);
     const [money, setMoney] = useState(currentMoney);
@@ -94,6 +95,9 @@ export default function ShopPage() {
 
     return (
     <div className='shop-page'>
+        <h1>Shop</h1>
+        {money && <h2 className='money green'>{money}</h2>}
+        {!money && <h2 className='money red'>{money}</h2>}
         <div id='stat-display'></div>
         <div className='shop-items'>
             {items.map((item, key) => (

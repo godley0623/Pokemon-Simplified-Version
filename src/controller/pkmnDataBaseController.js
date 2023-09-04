@@ -122,3 +122,8 @@ export function addMove (pkmn, move) {
     }
 
 }
+
+export function addMoney(amount) {
+    const currentMoney = Number(localStorage.getItem('PSV: money'))
+    localStorage.setItem('PSV: money', JSON.stringify(currentMoney + amount))
+}

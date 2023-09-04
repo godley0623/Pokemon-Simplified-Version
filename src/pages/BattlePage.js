@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { setPageBackground, capFirstLetter, sleep } from '../controller/controller'
 import { damageCalc, speedCheck, getRandomMove, attackHandler, faintHandler, fullHealParty, handleTrainerMoves, addBattleText, aiRandom, aiWeakness, lostCheck } from '../controller/pkmnBattleController';
-import { addMove } from '../controller/pkmnDataBaseController';
+import { addMoney, addMove } from '../controller/pkmnDataBaseController';
 import { setAudio, stopAudio } from '../controller/audioController';
 import '../styles/battlePage.css';
 import '../styles/type.css';
@@ -168,8 +168,9 @@ export default function BattlePage() {
                     addBattleText(bt, battleTextArr, setBtTracker)
                 }else {
                     //Handle Win State
-                    let bt = `${trainer.trainerClass} ${trainer.name} is defeated`
+                    let bt = `${trainer.trainerClass} ${trainer.name} is defeated, you've earn 300 poke-dollars`
                     setGameState('Win')
+                    addMoney(300)
                     addBattleText(bt, battleTextArr, setBtTracker)
                 }
             }, 2000)
@@ -217,7 +218,8 @@ export default function BattlePage() {
                     localStorage.setItem('PSV: pkmn-party', JSON.stringify(pkmnParty));
 
                     pokeball.classList.add('hidden');
-                    addBattleText(`${capFirstLetter(oppPkmn['name'])} was captured!`, battleTextArr, setBtTracker)
+                    addBattleText(`${capFirstLetter(oppPkmn['name'])} was captured! You've earned 150 poke-dollars`, battleTextArr, setBtTracker)
+                    addMoney(150)
                 }
             } else {
                 console.log('You need to defeat the pokemon before you can catch it.')
