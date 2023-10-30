@@ -95,3 +95,25 @@
 .play-page select {
     width: 50%;
 }
+
+@media (max-width: 768px) {
+    .option {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    
+        width: 7rem;
+        height: 8rem;
+    
+        background: rgba(0, 0, 0, .4);
+        border-radius: 1rem;
+    
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    
+        color: white;
+        font-size: 1.02rem;
+        font-weight: 800;
+    }
+}
