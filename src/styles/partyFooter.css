@@ -64,3 +64,35 @@
 .footer-buttons div:hover {
     background: linear-gradient(to bottom,#74e291,#61d780);
 }
+
+@media (max-width: 768px) {
+    .pkmn-party-footer .pkmn-party {
+        display: flex;
+        padding-left: 1.25rem;
+    }
+    
+    .pkmn-party-footer .icon-container {
+        background-color: rgba(254, 254, 254, 0.5);
+        width: 2rem;
+        height: 2rem;
+        border-radius: 0.5rem;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        cursor: pointer;
+    }
+
+    .pkmn-party-footer img {
+        transform-origin: center center;
+        transform: scale(1.5);
+    
+        position: relative;
+        bottom: 6px;
+    }
+
+    .footer-buttons {
+        display: none;
+    }
+}
