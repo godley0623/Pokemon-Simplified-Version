@@ -4,6 +4,7 @@ import bg from '../assets/backgroundImages/type-matchup-bg.jpeg'
 import { setPageBackground } from '../controller/controller'
 import { getPkmnParty, setWildPkmn, setTrainer } from '../controller/pkmnDataBaseController'
 import PokemonPartyFooter from '../components/PokemonPartyFooter'
+import MobileNavBar from '../components/MobileNavBar'
 import BattleOptions from '../components/BattleOptions'
 import '../styles/playPage.css'
 
@@ -29,6 +30,7 @@ export default function PlayPage() {
     
   return (
     <div className='play-page'>
+        <MobileNavBar />
         <div id='stat-display'></div>
         {!getPkmnParty() && 
             <div className='get-starter-pokemon'>

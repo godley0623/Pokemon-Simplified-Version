@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import PokemonPartyFooter from '../components/PokemonPartyFooter'
+import MobileNavBar from '../components/MobileNavBar'
 import { setPageBackground } from '../controller/controller'
 import { itemObj, items, itemQuanityArray } from '../controller/itemController'
 import '../styles/shopPage.css'
@@ -95,6 +96,7 @@ export default function ShopPage() {
 
     return (
     <div className='shop-page'>
+        <MobileNavBar />
         <h1>Shop</h1>
         {money && <h2 className='money green'>{money}</h2>}
         {!money && <h2 className='money red'>{money}</h2>}

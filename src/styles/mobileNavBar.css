@@ -1,0 +1,45 @@
+.mobile-navbar {
+    display: none;
+    z-index: 9999;
+}
+
+@media (max-width: 768px) {
+    .mobile-navbar {
+        width: 100vw;
+        height: 4rem;
+        background: linear-gradient(to bottom, black, rgb(58, 58, 58));
+    
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    
+        position: fixed;
+        top: 0; 
+    }
+
+    .mobile-navbar .footer-buttons {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        margin: 0 auto;
+    }
+
+    .mobile-navbar .footer-buttons div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        background: linear-gradient(to bottom,#4ca363,#276136);
+        color: white;
+    
+        font-size: 1.3rem;
+    
+        width: 3rem;
+        height: 3rem;
+    
+        border: 1px solid white;
+        border-radius: .5rem;
+    
+        cursor: pointer;
+    }
+}

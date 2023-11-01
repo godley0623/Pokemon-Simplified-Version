@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { createRoot } from 'react-dom/client';
 import PokemonPartyFooter from '../components/PokemonPartyFooter'
+import MobileNavBar from '../components/MobileNavBar'
 import { setPageBackground } from '../controller/controller'
 import { itemObj } from '../controller/itemController'
 import '../styles/bagPage.css'
@@ -60,6 +61,7 @@ export default function BagPage() {
 
   return (
     <div className='bag-page'>
+        <MobileNavBar />
         <div id='bag-display'></div>
         <div id='stat-display'></div>
         {bagState.length === 0 && 
